@@ -1,2 +1,1 @@
-# examen_yastas
-Examen Norbelys Naguanagua
+# sistema de inventario
