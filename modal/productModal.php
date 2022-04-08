@@ -1,4 +1,5 @@
 <!-- add product -->
+
 <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -26,6 +27,13 @@
 				    </div>
 	        </div--> <!-- /form-group-->	     	           	       
 
+			<div class="form-group">
+			    <!--label for="orderDate" class="col-sm-2 control-label">Fecha de orden</label-->
+				<label for="orderDate" class="col-sm-3 control-label">Fecha de salida</label>
+			    <div class="col-sm-8">
+			      <input type="date" class="form-control" id="orderDate" name="orderDate" autocomplete="off" />
+			    </div>
+			  </div> 
 	        <div class="form-group">
 	        	<label for="productName" class="col-sm-3 control-label">Nombre: </label>
 	        	<label class="col-sm-1 control-label">: </label>
@@ -314,7 +322,7 @@
 
       	<div class="removeProductMessages"></div>
 
-        <p>Realmente deseas eliminar el producto?</p>
+        <p>Realmente deseas eliminar el producto del almacén?</p>
       </div>
       <div class="modal-footer removeProductFooter">
         <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> Cancelar</button>

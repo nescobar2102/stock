@@ -52,7 +52,7 @@ $(document).ready(function() {
 				$('#clientContact').closest('.form-group').addClass('has-success');
 			} // /else
 
-		/*	if(paid == "") {
+			if(paid == "") {
 				$("#paid").after('<p class="text-danger"> Este campo es obligatorio </p>');
 				$('#paid').closest('.form-group').addClass('has-error');
 			} else {
@@ -78,7 +78,7 @@ $(document).ready(function() {
 				$('#paymentStatus').closest('.form-group').addClass('has-error');
 			} else {
 				$('#paymentStatus').closest('.form-group').addClass('has-success');
-			} // /else*/
+			} // /else
 
 
 			// array validation
@@ -403,6 +403,7 @@ function addRow() {
 
 					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
 						'<option value="">~~SELECT~~</option>';
+						// console.log(response);
 						$.each(response, function(index, value) {
 							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
 						});
@@ -411,8 +412,8 @@ function addRow() {
 					'</div>'+
 				'</td>'+
 				'<td style="padding-left:20px;"">'+
-					'<input type="text" name="stock[]" id="stock'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
-					'<input type="hidden" name="stockValue[]" id="stockValue'+count+'" autocomplete="off" class="form-control" />'+
+					'<input type="text" name="rate[]" id="rate'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
+					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" autocomplete="off" class="form-control" />'+
 				'</td style="padding-left:20px;">'+
 				'<td style="padding-left:20px;">'+
 					'<div class="form-group">'+
@@ -441,6 +442,8 @@ function addRow() {
 function removeProductRow(row = null) {
 	if(row) {
 		$("#row"+row).remove();
+
+
 		subAmount();
 	} else {
 		alert('error! Refresh the page again');
@@ -449,48 +452,6 @@ function removeProductRow(row = null) {
 
 // select on product data
 function getProductData(row = null) {
-	console.log("asdfgh" , row)
-	if(row) {
-		var productId = $("#productName"+row).val();		
-		
-		if(productId == "") { 
-
-			$("#quantity"+row).val("");						
-			$("#total"+row).val(""); 
-		} else {
-			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
-				type: 'post',
-				data: {productId : productId},
-				dataType: 'json',
-				success:function(response) {
-					console.log("response" , response)
-					// setting the rate value into the rate input field
-					
-					/*$("#rate"+row).val(response.rate);
-					$("#rateValue"+row).val(response.rate);*/
-					$("#stock"+row).val(response.quantity);
-					$("#stockValue"+row).val(response.quantity);
-
-					$("#quantity"+row).val(1);
-
-					var total = Number(response.rate) * 1;
-					total = total.toFixed(2);
-					$("#total"+row).val(total);
-					$("#totalValue"+row).val(total);
-				 
-					subAmount();
-				} // /success
-			}); // /ajax function to fetch the product data	
-		}
-				
-	} else {
-		alert('no row! please refresh the page');
-	}
-} // /select on product data
-
-
-function getProductData_old(row = null) {
 	if(row) {
 		var productId = $("#productName"+row).val();		
 		
@@ -517,7 +478,7 @@ function getProductData_old(row = null) {
 
 		} else {
 			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
+				url: 'php_action/fetchSelectedProductssssssssss.php',
 				type: 'post',
 				data: {productId : productId},
 				dataType: 'json',
@@ -562,15 +523,9 @@ function getProductData_old(row = null) {
 
 // table total
 function getTotal(row = null) {
-	console.log("getTotal" , row)
 	if(row) {
-		/*var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
+		var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
 		total = total.toFixed(2);
-		$("#total"+row).val(total);
-		$("#totalValue"+row).val(total);*/
-
-		var total = Number($("#stock"+row).val()) - Number($("#quantity"+row).val());
-	//	total = total.toFixed(2);
 		$("#total"+row).val(total);
 		$("#totalValue"+row).val(total);
 		

@@ -65,7 +65,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Stock <span class="caret"></span></a>
           <ul class="dropdown-menu">            
             <li id="topNavAddOrder"><a href="product.php"> <i class="glyphicon glyphicon-shopping-cart"></i> Ingreso al DarkStore</a></li>            
-            <li id="topNavManageOrder"><a href="product.php"> <i class="glyphicon glyphicon-share"></i> Agregar Stock -> Almacén</a></li>            
+            <!--li id="topNavManageOrder"><a href="product.php"> <i class="glyphicon glyphicon-share"></i> Agregar Stock -> Almacén</a></li-->            
           </ul>
         </li> 
 

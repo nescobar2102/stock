@@ -16,9 +16,9 @@ if($_POST) {
   $sku 	= $_POST['sku'];
   $modelo 	= $_POST['modelo'];
   $ubicacion 	= $_POST['ubicacion']; 
- 
-					$sql = "INSERT INTO product_coorporation (product_name,  brand_id,   quantity, rate, active, sku,modelo,ubicacion, status) 
-			VALUES ('$productName',  '$brandName',   '$quantity', '$rate', '$productStatus', '$sku', '$modelo'  ,'$ubicacion' ,1)";
+  $fecha_ingreso 	= $_POST['fecha_ingreso']; 
+					$sql = "INSERT INTO product_coorporation (product_name,  brand_id,   quantity, rate, active, sku,modelo,ubicacion,fecha_ingreso, status) 
+			VALUES ('$productName',  '$brandName',   '$quantity', '$rate', '$productStatus', '$sku', '$modelo'  ,'$ubicacion' ,'$fecha_ingreso',1)";
 
 				if($connect->query($sql) === TRUE) {
 					$valid['success'] = true;

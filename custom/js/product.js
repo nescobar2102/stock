@@ -70,7 +70,7 @@ $(document).ready(function() {
 				// success out for form 
 				$("#brandName").closest('.form-group').addClass('has-success');	  	
 			}	// /else
-
+/*
 			if(categoryName == "") {
 				$("#categoryName").after('<p class="text-danger">Este campo es obligatorio</p>');
 				$('#categoryName').closest('.form-group').addClass('has-error');
@@ -79,7 +79,7 @@ $(document).ready(function() {
 				$("#categoryName").find('.text-danger').remove();
 				// success out for form 
 				$("#categoryName").closest('.form-group').addClass('has-success');	  	
-			}	// /else
+			}	// /else*/
 
 			if(productStatus == "") {
 				$("#productStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
