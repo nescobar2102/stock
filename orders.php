@@ -72,20 +72,39 @@ if($_GET['o'] == 'add') {
 			  </div> <!--/form-group-->
 			  <div class="form-group">
 				  
+				  <label for="clientName" class="col-sm-2 control-label">Almacén</label>
+				  <div class="col-sm-10">
+				  <select class="form-control" name="brandCorporation" id="brandCorporation"  onchange="getSelectSucursal(this.value)"  >
+							  <option value="">-- Selecciona --</option>
+							  <?php
+								  $productSql = "SELECT * FROM brands_1 WHERE brand_status = 1 AND brand_active = 1 ";
+								  $productData = $connect->query($productSql);
+  
+								  while($row = $productData->fetch_array()) {									 		
+									  echo "<option value='".$row['brand_id']."'>".$row['brand_name']."</option>";
+									  } // /while 
+  
+							  ?>
+						  </select>
+					<!--input type="text" class="form-control" id="clientName" name="clientName" placeholder="Cliente" autocomplete="off" /-->
+				  </div>
+				</div> <!--/form-group-->
+			  <div class="form-group">
+				  
 			    <label for="clientName" class="col-sm-2 control-label">Sucursales</label>
-			    <div class="col-sm-10">
-				<select class="form-control" name="brandCorporation" id="brandCorporation" >
+			    <div class="col-sm-10" id="sucursales">
+				<!--select class="form-control" name="brandSurcursale" id="brandSurcursale" >
 							<option value="">-- Selecciona --</option>
 							<?php
 								$productSql = "SELECT * FROM brands WHERE brand_status = 1 AND brand_active = 1 ";
 								$productData = $connect->query($productSql);
 
 								while($row = $productData->fetch_array()) {									 		
-									echo "<option value='".$row['brand_name']."'>".$row['brand_name']."</option>";
+									echo "<option value='".$row['brand_id']."'>".$row['brand_name']."</option>";
 									} // /while 
 
 							?>
-						</select>
+						</select-->
 			      <!--input type="text" class="form-control" id="clientName" name="clientName" placeholder="Cliente" autocomplete="off" /-->
 			    </div>
 			  </div> <!--/form-group-->

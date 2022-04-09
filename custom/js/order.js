@@ -8,6 +8,7 @@ $(document).ready(function() {
 	$("#navOrder").addClass('active');
 
 	if(divRequest == 'add')  {
+	 
 		// add order	
 		// top nav child bar 
 		$('#topNavAddOrder').addClass('active');	
@@ -22,13 +23,16 @@ $(document).ready(function() {
 			$('.form-group').removeClass('has-error').removeClass('has-success');
 			$('.text-danger').remove();
 				
-			var orderDate = $("#orderDate").val();
-			var clientName = $("#clientName").val();
+			var orderDate = $("#orderDate").val(); 
+			var brandCorporation = document.getElementById('brandCorporation').value;
+			var brandSurcursale = document.getElementById('brandSurcursale').value;
 			var clientContact = $("#clientContact").val();
-			var paid = $("#paid").val();
+
+		 
+		/*	var paid = $("#paid").val();
 			var discount = $("#discount").val();
 			var paymentType = $("#paymentType").val();
-			var paymentStatus = $("#paymentStatus").val();		
+			var paymentStatus = $("#paymentStatus").val();		*/
 
 			// form validation 
 			if(orderDate == "") {
@@ -37,12 +41,13 @@ $(document).ready(function() {
 			} else {
 				$('#orderDate').closest('.form-group').addClass('has-success');
 			} // /else
+			console.log("wqertyrewqertytrewqwertyrewqwertytrewq",brandCorporation,brandSurcursale);
 
-			if(clientName == "") {
-				$("#clientName").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#clientName').closest('.form-group').addClass('has-error');
+			if(brandCorporation == "") {
+				$("#brandCorporation").after('<p class="text-danger"> Este campo es obligatorio </p>');
+				$('#brandCorporation').closest('.form-group').addClass('has-error');
 			} else {
-				$('#clientName').closest('.form-group').addClass('has-success');
+				$('#brandCorporation').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(clientContact == "") {
@@ -91,7 +96,7 @@ $(document).ready(function() {
 		    	$("#"+productNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
 		    	$("#"+productNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
-	      }          
+	      }        	  
 	   	} // for
 
 	   	for (var x = 0; x < productName.length; x++) {       						
@@ -368,6 +373,40 @@ function printOrder(orderId = null) {
 		}); // /ajax function to fetch the printable order
 	} // /if orderId
 } // /print order function
+$('#brandCorporation').on('change', function() {
+ 
+// select on sucursal de un almacen
+ 
+		var almacenid =  $(this).find(":selected").val()		
+	 
+		if(almacenid != "") {
+			$("#sucursales").empty();  
+			$.ajax({
+				url: 'php_action/fetchSelectedSucursal.php',
+				type: 'post',
+				data: {almacenid : almacenid},
+				 dataType: 'json',
+				success:function(response) {
+					console.log("response surcursales" , response)
+					// setting the rate value into the rate input field
+					var tr =    
+						'<select class="form-control" name="brandSurcursale" id="brandSurcursale">'+
+							'<option value="">--Seleccione--</option>';
+							$.each(response, function(index, value) { 
+								tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
+							});
+														
+						tr += '</select>';  
+			 				
+					$("#sucursales").append(tr);
+				 	
+				 
+				} // /success
+			}); // /ajax function to fetch the product data	
+		 }
+				
+	 
+});
 
 function addRow() {
 	$("#addRowBtn").button("loading");
