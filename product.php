@@ -1,7 +1,7 @@
 <?php require_once 'php_action/db_connect.php' ?>
 <?php require_once 'includes/header.php'; ?>
 <?php require_once 'modal/productModal.php'; ?>
-
+<?php require_once 'modal/productModalmasiva.php'; ?>
 <div class="row">
 	<div class="col-md-12">
 
@@ -20,6 +20,7 @@
 
 				<div class="div-action pull pull-right" style="padding-bottom:20px;">
 					<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtn" data-target="#addProductModal"> <i class="glyphicon glyphicon-plus-sign"></i> Ingresar Stock </button>
+					<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtnMasiva" data-target="#addProductModalMasiva"> <i class="glyphicon glyphicon-plus-sign"></i> Carga masiva Stock </button>
 				</div> <!-- /div-action -->				
 				
 				<table class="table" id="manageProductTable">
