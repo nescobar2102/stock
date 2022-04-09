@@ -46,7 +46,7 @@ if($_POST) {
 
 					$connect->query($orderItemSql);		
 
-					echo $productSucursale = "INSERT INTO  product ( product_id,brand_id quantity, status, fecha_salida) 
+					 $productSucursale = "INSERT INTO  product ( product_id,brand_id, quantity, status, fecha_salida) 
 					VALUES ('".$_POST['productName'][$x]."','$brandSurcursale', '".$_POST['quantity'][$x]."',  1,'$orderDate')";
 
 				$connect->query($productSucursale);		

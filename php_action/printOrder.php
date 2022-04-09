@@ -57,8 +57,7 @@ $orderItemResult = $connect->query($orderItemSql);
 	<tbody>
 		<tr>
 			<th>#</th>
-			<th>Producto</th>
-			<th>Sucursal</th>
+			<th>Producto</th>		
 			<th>Cantidad</th>
 		 
 		</tr>';
@@ -68,8 +67,7 @@ $orderItemResult = $connect->query($orderItemSql);
 						
 			$table .= '<tr>
 				<th>'.$x.'</th>
-				<th>'.$row[4].'</th>
-				<th>'.$row[1].'</th>
+				<th>'.$row[4].'</th>				
 				<th>'.$row[2].'</th>
 				<th>0</th>
 			</tr>

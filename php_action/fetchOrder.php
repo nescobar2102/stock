@@ -4,7 +4,7 @@ require_once 'core.php';
 
 //$sql = "SELECT order_id, order_date, client_name, client_contact, payment_status FROM orders WHERE order_status = 1";
 
- $sql = "SELECT orders_sucursale.order_id ,orders_sucursale.order_date,brands_1.brand_name,brands.brand_name, orders_sucursale.client_contact
+  $sql = "SELECT orders_sucursale.order_id ,orders_sucursale.order_date,brands_1.brand_name,brands.brand_name, orders_sucursale.client_contact
  FROM orders_sucursale 
  INNER JOIN brands_1 ON orders_sucursale.brandCorporation = brands_1.brand_id 
 INNER JOIN brands ON orders_sucursale.brandSurcursale = brands.brand_id 
