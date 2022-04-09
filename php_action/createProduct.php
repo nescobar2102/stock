@@ -16,7 +16,7 @@ if($_POST) {
   $sku 	= $_POST['sku'];
   $modelo 	= $_POST['modelo'];
   $ubicacion 	= $_POST['ubicacion']; 
-  $fecha_ingreso 	= $_POST['fecha_ingreso']; 
+  $fecha_ingreso 	= $_POST['orderDate']; 
 					$sql = "INSERT INTO product_coorporation (product_name,  brand_id,   quantity, rate, active, sku,modelo,ubicacion,fecha_ingreso, status) 
 			VALUES ('$productName',  '$brandName',   '$quantity', '$rate', '$productStatus', '$sku', '$modelo'  ,'$ubicacion' ,'$fecha_ingreso',1)";
 

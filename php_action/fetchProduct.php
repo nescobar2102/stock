@@ -5,7 +5,7 @@
 require_once 'core.php';
 
 $sql = "SELECT product.product_id, product.product_name, product.product_image,
-		product.brand_id, product.quantity, product.rate, product.active, product.status,
+		product.brand_id, product.quantity, product.fecha_ingreso, product.active, product.status,
 		brands.brand_name,product.sku,product.ubicacion,product.modelo
 		FROM product_coorporation as product
 			INNER JOIN brands_1 as brands 

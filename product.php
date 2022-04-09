@@ -26,7 +26,7 @@
 					<thead>
 						<tr> 						
 							<th>Nombre del producto</th>
-							<th>Precio</th>							
+							<th>Fecha Ingreso</th>							
 							<th>Stock</th>							
 							<th>Coorporacion</th>
 							<th>SKU</th>
