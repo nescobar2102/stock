@@ -272,10 +272,10 @@ if($_GET['o'] == 'add') {
 					<tr>
 						<th>#</th>
 						<th>Fecha</th>
-						<th>Cliente</th>
-						<th>Teléfono</th>
-						<th>Total de productos</th>
-						<th>Estado del pago</th>
+						<th>Almacén</th>
+						<th>Sucursal</th>
+						<th>Contacto</th>
+						<th>Total de productos</th> 
 						<th>Opciones</th>
 					</tr>
 				</thead>
