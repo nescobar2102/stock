@@ -41,7 +41,7 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <select class="form-control" id="brandStatus" name="brandStatus">
-				      	<option value="">-- Seleciona--</option>
+				      	<option value="">-- Selecciona--</option>
 				      	<option value="1">Disponible</option>
 				      	<option value="2">No disponible</option>
 				      </select>

@@ -136,7 +136,7 @@ function editBrands(brandId = null) {
 					$(".text-danger").remove();
 					// remove the form error
 					$('.form-group').removeClass('has-error').removeClass('has-success');			
-					var contacto = $('#contacto').val();	 
+					var contacto = $('#editBrandName1').val();	 
 					var brandName = $('#editBrandName').val();	 							
 					var brandStatus = $('#editBrandStatus').val();
 
@@ -151,13 +151,13 @@ function editBrands(brandId = null) {
 					}
 					
 					if(contacto == "") {
-						$("#contacto").after('<p class="text-danger">Este campo es obligatorio</p>');
-						$('#contacto').closest('.form-group').addClass('has-error');
+						$("#editBrandName1").after('<p class="text-danger">Este campo es obligatorio</p>');
+						$('#editBrandName1').closest('.form-group').addClass('has-error');
 					} else {
 						// remov error text field
-						$("#contacto").find('.text-danger').remove();
+						$("#editBrandName1").find('.text-danger').remove();
 						// success out for form 
-						$("#contacto").closest('.form-group').addClass('has-success');	  	
+						$("#editBrandName1").closest('.form-group').addClass('has-success');	  	
 					}
 
 					if(brandStatus == "") {
