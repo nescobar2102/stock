@@ -27,27 +27,27 @@ $(document).ready(function() {
 			var brandCorporation = document.getElementById('brandCorporation').value;
 			var brandSurcursale = document.getElementById('brandSurcursale').value;
 			var clientContact = $("#clientContact").val();
-
-		 
-		/*	var paid = $("#paid").val();
-			var discount = $("#discount").val();
-			var paymentType = $("#paymentType").val();
-			var paymentStatus = $("#paymentStatus").val();		*/
-
+ 
 			// form validation 
 			if(orderDate == "") {
 				$("#orderDate").after('<p class="text-danger"> Este campo es obligatorio </p>');
 				$('#orderDate').closest('.form-group').addClass('has-error');
 			} else {
 				$('#orderDate').closest('.form-group').addClass('has-success');
-			} // /else
-			console.log("wqertyrewqertytrewqwertyrewqwertytrewq",brandCorporation,brandSurcursale);
+			} // /else 
 
 			if(brandCorporation == "") {
 				$("#brandCorporation").after('<p class="text-danger"> Este campo es obligatorio </p>');
 				$('#brandCorporation').closest('.form-group').addClass('has-error');
 			} else {
 				$('#brandCorporation').closest('.form-group').addClass('has-success');
+			} // /else
+
+			if(brandSurcursale == "") {
+				$("#brandSurcursale").after('<p class="text-danger"> Este campo es obligatorio </p>');
+				$('#brandSurcursale').closest('.form-group').addClass('has-error');
+			} else {
+				$('#brandSurcursale').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(clientContact == "") {
@@ -410,7 +410,8 @@ $('#brandCorporation').on('change', function() {
 
 function addRow() {
 	$("#addRowBtn").button("loading");
-
+	console.log("cargando row")
+	var brandId = document.getElementById('brandCorporation').value;
 	var tableLength = $("#productTable tbody tr").length;
 
 	var tableRow;
@@ -430,9 +431,10 @@ function addRow() {
 	}
 
 	$.ajax({
-		url: 'php_action/fetchProductData.php',
+		url: 'php_action/fetchProductDataOrder.php',
 		type: 'post',
 		dataType: 'json',
+		data: {brandId: brandId},
 		success:function(response) {
 			$("#addRowBtn").button("reset");			
 
@@ -441,7 +443,7 @@ function addRow() {
 					'<div class="form-group">'+
 
 					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
-						'<option value="">~~SELECT~~</option>';
+						'<option value="">--Seleccione--</option>';
 						$.each(response, function(index, value) {
 							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
 						});

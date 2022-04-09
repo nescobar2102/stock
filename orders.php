@@ -74,7 +74,7 @@ if($_GET['o'] == 'add') {
 				  
 				  <label for="clientName" class="col-sm-2 control-label">Corporación</label>
 				  <div class="col-sm-10">
-				  <select class="form-control" name="brandCorporation" id="brandCorporation"  onchange="getSelectSucursal(this.value)"  >
+				  <select class="form-control" name="brandCorporation" id="brandCorporation">
 							  <option value="">-- Selecciona --</option>
 							  <?php
 								  $productSql = "SELECT * FROM brands_1 WHERE brand_status = 1 AND brand_active = 1 ";
@@ -128,8 +128,8 @@ if($_GET['o'] == 'add') {
 			  	<tbody>
 			  		<?php
 			  		$arrayNumber = 0;
-			  		for($x = 1; $x < 3; $x++) {  echo "wer".$x ?>
-			  			<tr id="row<?php echo $x; ?>" class="<?php echo $arrayNumber; ?>">			  				
+			  		//*for($x = 1; $x < 3; $x++) {  ?>
+			  			<!--tr id="row<?php echo $x; ?>" class="<?php echo $arrayNumber; ?>">			  				
 			  				<td style="margin-left:20px;">
 			  					<div class="form-group">
 
@@ -137,21 +137,21 @@ if($_GET['o'] == 'add') {
 			  						<option value="">-- Selecciona --</option>
 			  						<?php
 			  							//$productSql = "SELECT * FROM product WHERE active = 1 AND status = 1 AND quantity != 0";
-										$productSql = "SELECT * FROM product_coorporation WHERE active = 1 AND status = 1 AND quantity != 0";
-			  							$productData = $connect->query($productSql);
+										//$productSql = "SELECT * FROM product_coorporation WHERE active = 1 AND status = 1 AND quantity != 0";
+			  						//	$productData = $connect->query($productSql);
 
-			  							while($row = $productData->fetch_array()) {									 		
+			  							/*while($row = $productData->fetch_array()) {									 		
 			  								echo "<option value='".$row['product_id']."' id='changeProduct".$row['product_id']."'>".$row['product_name']."</option>";
 										 	} // /while 
-
+*/
 			  						?>
 		  						</select>
 			  					</div>
 			  				</td>
-			  				<!--td style="padding-left:20px;">			  					
+			  				<td style="padding-left:20px;">			  					
 			  					<input type="text" name="rate[]" id="rate<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" />			  					
 			  					<input type="hidden" name="rateValue[]" id="rateValue<?php echo $x; ?>" autocomplete="off" class="form-control" />			  					
-			  				</td-->	
+			  				</td>	
 							  <td style="padding-left:20px;">			  					
 			  					<input type="text" name="stock[]" id="stock<?php echo $x; ?>" autocomplete="off" disabled="true" class="form-control" />			  					
 			  					<input type="hidden" name="stockValue[]" id="stockValue<?php echo $x; ?>" autocomplete="off" class="form-control" />			  					
@@ -168,10 +168,10 @@ if($_GET['o'] == 'add') {
 			  				<td>
 			  					<button class="btn btn-default removeProductRowBtn" type="button" id="removeProductRowBtn" onclick="removeProductRow(<?php echo $x; ?>)"><i class="glyphicon glyphicon-trash"></i></button>
 			  				</td>
-			  			</tr>
+			  			</tr-->
 		  			<?php
-		  			$arrayNumber++;
-			  		} // /for
+		  		//	$arrayNumber++;
+			  		///} // /for
 			  		?>
 			  	</tbody>			  	
 			  </table>
