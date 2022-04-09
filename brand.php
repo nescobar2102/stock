@@ -25,7 +25,7 @@
 					<thead>
 						<tr>	
 							<th>Corporacion</th>						
-							<th>Nombre</th>
+							<th>Almacén</th>
 							<th>Estado</th>
 							<th style="width:15%;">Opciones</th>
 						</tr>

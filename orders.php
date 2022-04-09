@@ -72,7 +72,7 @@ if($_GET['o'] == 'add') {
 			  </div> <!--/form-group-->
 			  <div class="form-group">
 				  
-				  <label for="clientName" class="col-sm-2 control-label">Almacén</label>
+				  <label for="clientName" class="col-sm-2 control-label">Corporación</label>
 				  <div class="col-sm-10">
 				  <select class="form-control" name="brandCorporation" id="brandCorporation"  onchange="getSelectSucursal(this.value)"  >
 							  <option value="">-- Selecciona --</option>
@@ -272,7 +272,7 @@ if($_GET['o'] == 'add') {
 					<tr>
 						<th>#</th>
 						<th>Fecha</th>
-						<th>Almacén</th>
+						<th>Corporacion</th>
 						<th>Sucursal</th>
 						<th>Contacto</th>
 						<th>Total de productos</th> 

@@ -176,7 +176,8 @@ $(document).ready(function() {
 	}); // /add product modal btn clicked
 	
 
-	// remove product 	
+	// add product 	 carga masiva
+	
 
 }); // document.ready fucntion
 
