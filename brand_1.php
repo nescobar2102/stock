@@ -14,17 +14,15 @@
 				<div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Listado de corporaciones</div>
 			</div> <!-- /panel-heading -->
 			<div class="panel-body">
-
 				<div class="remove-messages"></div>
-
 				<div class="div-action pull pull-right" style="padding-bottom:20px;">
 					<button class="btn btn-default button1" data-toggle="modal" data-target="#addBrandModel"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar corporaciones </button>
-				</div> <!-- /div-action -->				
-				
+				</div> <!-- /div-action -->			
 				<table class="table" id="manageBrandTable1">
 					<thead>
 						<tr>							
 							<th>Corporacion</th>
+							<th>Contactos</th>
 							<th>Estado</th>
 							<th style="width:15%;">Opciones</th>
 						</tr>

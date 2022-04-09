@@ -355,24 +355,24 @@ function printOrder(orderId = null) {
 			type: 'post',
 			data: {orderId: orderId},
 			dataType: 'text',
-			success:function(response) {
-				
+			success:function(response) { 
 				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-        mywindow.document.write('<html><head><title>Order Invoice</title>');        
-        mywindow.document.write('</head><body>');
-        mywindow.document.write(response);
-        mywindow.document.write('</body></html>');
+					mywindow.document.write('<html><head><title>Order de Salida</title>');        
+					mywindow.document.write('</head><body>');
+					mywindow.document.write(response);
+					mywindow.document.write('</body></html>');
 
-        mywindow.document.close(); // necessary for IE >= 10
+     //   mywindow.document.close(); // necessary for IE >= 10
         mywindow.focus(); // necessary for IE >= 10
 
-        mywindow.print();
-        mywindow.close();
+     //   mywindow.print();
+      mywindow.close();
 				
 			}// /success function
 		}); // /ajax function to fetch the printable order
 	} // /if orderId
 } // /print order function
+
 $('#brandCorporation').on('change', function() {
  
 // select on sucursal de un almacen

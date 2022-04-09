@@ -112,6 +112,7 @@ function editBrands(brandId = null) {
 			data: {brandId : brandId},
 			dataType: 'json',
 			success:function(response) {
+				console.log("-----------", response.contacto)
 				// modal loading
 				$('.modal-loading').addClass('div-hide');
 				// modal result
@@ -120,7 +121,9 @@ function editBrands(brandId = null) {
 				$('.editBrandFooter').removeClass('div-hide');
 
 				// setting the brand name value 
-				$('#editBrandName').val(response.brand_name);
+				$('#contacto').val(response.brand_name);				
+				// setting the brand contacto value 
+				$('#editBrandName').val(response.contacto);
 				// setting the brand status value
 				$('#editBrandStatus').val(response.brand_active);
 				// brand id 
@@ -134,7 +137,7 @@ function editBrands(brandId = null) {
 					// remove the form error
 					$('.form-group').removeClass('has-error').removeClass('has-success');			
 
-					var brandName = $('#editBrandName').val();
+					var brandName = $('#editBrandName').val();	 							
 					var brandStatus = $('#editBrandStatus').val();
 
 					if(brandName == "") {

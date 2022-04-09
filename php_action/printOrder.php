@@ -4,7 +4,13 @@ require_once 'core.php';
 
 $orderId = $_POST['orderId'];
 
-$sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due FROM orders WHERE order_id = $orderId";
+//$sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due FROM orders WHERE order_id = $orderId";
+
+$sql = "SELECT order_date, brands_1.brand_name AS corporation, client_contact, brands.brand_name 
+FROM orders_sucursale 
+INNER JOIN brands_1 ON brands_1.brand_id = orders_sucursale.brandCorporation
+ INNER JOIN brands ON brands.brand_id = orders_sucursale.brandSurcursale
+  WHERE order_id= $orderId";
 
 $orderResult = $connect->query($sql);
 $orderData = $orderResult->fetch_array();
@@ -12,19 +18,21 @@ $orderData = $orderResult->fetch_array();
 $orderDate = $orderData[0];
 $clientName = $orderData[1];
 $clientContact = $orderData[2]; 
-$subTotal = $orderData[3];
+$Sucursale = $orderData[3];
+/*
 $vat = $orderData[4];
 $totalAmount = $orderData[5]; 
 $discount = $orderData[6];
 $grandTotal = $orderData[7];
 $paid = $orderData[8];
-$due = $orderData[9];
+$due = $orderData[9];*/
 
 
-$orderItemSql = "SELECT order_item.product_id, order_item.rate, order_item.quantity, order_item.total,
-product.product_name FROM order_item
-	INNER JOIN product ON order_item.product_id = product.product_id 
- WHERE order_item.order_id = $orderId";
+$orderItemSql = "SELECT order_item_sucursale.product_id, order_item_sucursale.rate, order_item_sucursale.quantity,
+ order_item_sucursale.total, product_coorporation.product_name 
+FROM order_item_sucursale
+ INNER JOIN product_coorporation ON order_item_sucursale.product_id = product_coorporation.product_id
+  WHERE order_item_sucursale.order_id= $orderId";
 $orderItemResult = $connect->query($orderItemSql);
 
  $table = '
@@ -35,7 +43,8 @@ $orderItemResult = $connect->query($orderItemSql);
 
 			<center>
 				Fecha : '.$orderDate.'
-				<center>Cliente : '.$clientName.'</center>
+				<center>Corporation : '.$clientName.'</center>
+				<center>Surcursal : '.$Sucursale.'</center>
 				Teléfono : '.$clientContact.'
 			</center>		
 			</th>
@@ -49,9 +58,9 @@ $orderItemResult = $connect->query($orderItemSql);
 		<tr>
 			<th>#</th>
 			<th>Producto</th>
-			<th>Precio</th>
+			<th>Sucursal</th>
 			<th>Cantidad</th>
-			<th>Total</th>
+		 
 		</tr>';
 
 		$x = 1;
@@ -62,57 +71,19 @@ $orderItemResult = $connect->query($orderItemSql);
 				<th>'.$row[4].'</th>
 				<th>'.$row[1].'</th>
 				<th>'.$row[2].'</th>
-				<th>'.number_format($row[3],2).'</th>
+				<th>0</th>
 			</tr>
 			';
 		$x++;
 		} // /while
 
-		$table .= '<tr>
-			<th></th>
-		</tr>
-
-		<tr>
-			<th></th>
-		</tr>
-
-		<tr>
-			<th>Sub total</th>
-			<th>'.number_format($subTotal,2).'</th>			
-		</tr>
-
-		<tr>
-			<th>IVA (13%)</th>
-			<th>'.number_format($vat,2).'</th>			
-		</tr>
-
-		<tr>
-			<th>Total neto</th>
-			<th>'.number_format($totalAmount,2).'</th>			
-		</tr>	
-
-		<tr>
-			<th>Descuento</th>
-			<th>'.number_format($discount,2).'</th>			
-		</tr>
-
-		<tr>
-			<th>Total</th>
-			<th>'.number_format($grandTotal,2).'</th>			
-		</tr>
-
-		<tr>
-			<th>Pagado</th>
-			<th>'.number_format($paid,2).'</th>			
-		</tr>
-
-		<tr>
-			<th>Pendiente</th>
-			<th>'.number_format($due,2).'</th>			
-		</tr>
+		$table .= ' 
 	</tbody>
 </table>
- ';
+
+<input type="button" name="imprimir" value="Imprimir" onclick="window.print();"> '
+;
+ 
 
 
 $connect->close();
