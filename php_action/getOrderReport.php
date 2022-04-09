@@ -37,8 +37,8 @@ if($_POST) {
 		<tr>';
 		$totalAmount = "";
 		while ($result = $query->fetch_assoc()) {
-			$sql1 = "SELECT SUM(quantity)  as total FROM `order_item_sucursale` WHERE order_id= $result['order_id']";
-			$query1 = $connect->query($sql1);
+			/*$sql1 = "SELECT SUM(quantity)  as total FROM `order_item_sucursale` WHERE order_id= $result['order_id']";
+			$query1 = $connect->query($sql1);*/
 
 			$table .= '<tr>
 				<td><center>'.$result['order_date'].'</center></td>

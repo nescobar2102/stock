@@ -25,8 +25,10 @@
 				  <div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
 				      <button type="submit" class="btn btn-success" id="generateReportBtn"> <i class="glyphicon glyphicon-ok-sign"></i> Generar Reporte</button>
+					  <td><a href="php_action/getOrderReportExcel.php">DESCARGAR EXCEL</a></td>
 				    </div>
 				  </div>
+				 
 				</form>
 
 			</div>
