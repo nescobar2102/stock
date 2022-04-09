@@ -74,11 +74,18 @@
 					</div>
 
 		      <div class="edit-brand-result">
-		      	<div class="form-group">
-		        	<label for="editBrandName" class="col-sm-3 control-label">Nombre: </label>
+			  <div class="form-group">
+		        	<label for="editBrandName" class="col-sm-3 control-label">Corporacion: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
 					      <input type="text" class="form-control" id="editBrandName" placeholder="Nombre de la Corporación" name="editBrandName" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group-->	
+		      	<div class="form-group">
+		        	<label for="editBrandName1" class="col-sm-3 control-label">Contacto: </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" id="editBrandName1" placeholder="Contacto de la Corporación" name="editBrandName1" autocomplete="off">
 					    </div>
 		        </div> <!-- /form-group-->	         	        
 		        <div class="form-group">
