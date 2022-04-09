@@ -230,52 +230,7 @@
 						    </div>
 			        </div> <!-- /form-group-->	        	 
 
-			        <div class="form-group">
-			        	<label for="editRate" class="col-sm-3 control-label">Precio: </label>
-			        	<label class="col-sm-1 control-label">: </label>
-						    <div class="col-sm-8">
-						      <input type="text" class="form-control" id="editRate" placeholder="Precio" name="editRate" autocomplete="off">
-						    </div>
-			        </div> <!-- /form-group-->	     	        
-
-			        <div class="form-group">
-			        	<label for="editBrandName" class="col-sm-3 control-label">Fabricante: </label>
-			        	<label class="col-sm-1 control-label">: </label>
-						    <div class="col-sm-8">
-						      <select class="form-control" id="editBrandName" name="editBrandName">
-						      	<option value="">-- Selecciona --</option>
-						      	<?php 
-						      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1 AND brand_active = 1";
-										$result = $connect->query($sql);
-
-										while($row = $result->fetch_array()) {
-											echo "<option value='".$row[0]."'>".$row[1]."</option>";
-										} // while
-										
-						      	?>
-						      </select>
-						    </div>
-			        </div> <!-- /form-group-->	
-
-			        <div class="form-group">
-			        	<label for="editCategoryName" class="col-sm-3 control-label">Categoría: </label>
-			        	<label class="col-sm-1 control-label">: </label>
-						    <div class="col-sm-8">
-						      <select type="text" class="form-control" id="editCategoryName" name="editCategoryName" >
-						      	<option value="">-- Selecciona --</option>
-						      	<?php 
-						      	$sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1 AND categories_active = 1";
-										$result = $connect->query($sql);
-
-										while($row = $result->fetch_array()) {
-											echo "<option value='".$row[0]."'>".$row[1]."</option>";
-										} // while
-										
-						      	?>
-						      </select>
-						    </div>
-			        </div> <!-- /form-group-->					        	         	       
-
+			      	   
 			        <div class="form-group">
 			        	<label for="editProductStatus" class="col-sm-3 control-label">Estado: </label>
 			        	<label class="col-sm-1 control-label">: </label>

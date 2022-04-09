@@ -205,13 +205,14 @@ function editProduct(productId = null) {
 				// update the product data function
 				$("#editProductForm").unbind('submit').bind('submit', function() {
 
+					console.log("#qewrthgfdsasfgrthjgbsadfrghgfdertyhgfdsertyhg")
 					// form validation
 					var productImage = $("#editProductImage").val();
 					var productName = $("#editProductName").val();
 					var quantity = $("#editQuantity").val();
-					var rate = $("#editRate").val();
+				//	var rate = $("#editRate").val();
 					var brandName = $("#editBrandName").val();
-					var categoryName = $("#editCategoryName").val();
+				//	var categoryName = $("#editCategoryName").val();
 					var productStatus = $("#editProductStatus").val();
 								
 
@@ -234,7 +235,7 @@ function editProduct(productId = null) {
 						// success out for form 
 						$("#editQuantity").closest('.form-group').addClass('has-success');	  	
 					}	// /else
-
+/*
 					if(rate == "") {
 						$("#editRate").after('<p class="text-danger">Este campo es obligatorio</p>');
 						$('#editRate').closest('.form-group').addClass('has-error');
@@ -243,7 +244,7 @@ function editProduct(productId = null) {
 						$("#editRate").find('.text-danger').remove();
 						// success out for form 
 						$("#editRate").closest('.form-group').addClass('has-success');	  	
-					}	// /else
+					}	// /else*/
 
 					if(brandName == "") {
 						$("#editBrandName").after('<p class="text-danger">Este campo es obligatorio</p>');
@@ -254,7 +255,7 @@ function editProduct(productId = null) {
 						// success out for form 
 						$("#editBrandName").closest('.form-group').addClass('has-success');	  	
 					}	// /else
-
+/*
 					if(categoryName == "") {
 						$("#editCategoryName").after('<p class="text-danger">Este campo es obligatorio</p>');
 						$('#editCategoryName').closest('.form-group').addClass('has-error');
@@ -264,7 +265,7 @@ function editProduct(productId = null) {
 						// success out for form 
 						$("#editCategoryName").closest('.form-group').addClass('has-success');	  	
 					}	// /else
-
+*/
 					if(productStatus == "") {
 						$("#editProductStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
 						$('#editProductStatus').closest('.form-group').addClass('has-error');
@@ -275,7 +276,7 @@ function editProduct(productId = null) {
 						$("#editProductStatus").closest('.form-group').addClass('has-success');	  	
 					}	// /else					
 
-					if(productName && quantity && rate && brandName && categoryName && productStatus) {
+					if(productName && quantity && rate && brandName  && productStatus) {
 						// submit loading button
 						$("#editProductBtn").button('loading');
 
