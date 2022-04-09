@@ -29,7 +29,7 @@
 
 			<div class="form-group">
 			    <!--label for="orderDate" class="col-sm-2 control-label">Fecha de orden</label-->
-				<label for="orderDate" class="col-sm-3 control-label">Fecha de salida</label>
+				<label for="orderDate" class="col-sm-3 control-label">Fecha de ingreso</label>
 			    <div class="col-sm-8">
 			      <input type="date" class="form-control" id="orderDate" name="orderDate" autocomplete="off" />
 			    </div>
