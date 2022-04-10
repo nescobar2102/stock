@@ -16,7 +16,7 @@ $countOrder = $orderQuery->num_rows;
 
 $totalRevenue = 0;
 while ($orderResult = $orderQuery->fetch_assoc()) {
-	$totalRevenue += $orderResult['paid'];
+	//$totalRevenue += $orderResult['paid'];
 }
 
 //productos de corporation
