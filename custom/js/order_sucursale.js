@@ -181,7 +181,7 @@ $(document).ready(function() {
 		$('#topNavManageOrder').addClass('active');
 
 		manageOrderTable = $("#manageOrderTable").DataTable({
-			'ajax': 'php_action/fetchOrder.php',
+			'ajax': 'php_action/fetchOrderSucursale.php',
 			'order': []
 		});		
 					
@@ -351,13 +351,13 @@ function printOrder(orderId = null) {
 	if(orderId) {		
 			
 		$.ajax({
-			url: 'php_action/printOrder.php',
+			url: 'php_action/printOrderSucursale.php',
 			type: 'post',
 			data: {orderId: orderId},
 			dataType: 'text',
 			success:function(response) { 
 				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-					mywindow.document.write('<html><head><title>Order de Salida</title>');        
+					mywindow.document.write('<html><head><title>Order de Salida Sucursal</title>');        
 					mywindow.document.write('</head><body>');
 					mywindow.document.write(response);
 					mywindow.document.write('</body></html>');
@@ -411,16 +411,16 @@ $('#brandCorporation').on('change', function() {
 function addRow() {
 	$("#addRowBtn").button("loading");
 	console.log("cargando row")
-	var brandId = document.getElementById('brandCorporation').value;
-	var tableLength = $("#productTable tbody tr").length;
+	var brandId = document.getElementById('brandSurcursale').value;
+	var tableLength = $("#productTable1 tbody tr").length;
 
 	var tableRow;
 	var arrayNumber;
 	var count;
 
 	if(tableLength > 0) {		
-		tableRow = $("#productTable tbody tr:last").attr('id');
-		arrayNumber = $("#productTable tbody tr:last").attr('class');
+		tableRow = $("#productTable1 tbody tr:last").attr('id');
+		arrayNumber = $("#productTable1 tbody tr:last").attr('class');
 		count = tableRow.substring(3);	
 		count = Number(count) + 1;
 		arrayNumber = Number(arrayNumber) + 1;					
@@ -431,7 +431,7 @@ function addRow() {
 	}
 
 	$.ajax({
-		url: 'php_action/fetchProductDataOrder.php',
+		url: 'php_action/fetchProductDataOrderSucursale.php',
 		type: 'post',
 		dataType: 'json',
 		data: {brandId: brandId},
@@ -442,7 +442,7 @@ function addRow() {
 				'<td>'+
 					'<div class="form-group">'+
 
-					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
+					'<select class="form-control" name="productName1[]" id="productName1'+count+'" onchange="getProductData('+count+')" >'+
 						'<option value="">--Seleccione--</option>';
 						$.each(response, function(index, value) {
 							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
@@ -469,9 +469,9 @@ function addRow() {
 				'</td>'+
 			'</tr>';
 			if(tableLength > 0) {							
-				$("#productTable tbody tr:last").after(tr);
+				$("#productTable1 tbody tr:last").after(tr);
 			} else {				
-				$("#productTable tbody").append(tr);
+				$("#productTable1 tbody").append(tr);
 			}		
 
 		} // /success
@@ -492,7 +492,7 @@ function removeProductRow(row = null) {
 function getProductData(row = null) {
 	console.log("asdfgh" , row)
 	if(row) {
-		var productId = $("#productName"+row).val();		
+		var productId = $("#productName1"+row).val();		
 		
 		if(productId == "") { 
 
@@ -500,7 +500,7 @@ function getProductData(row = null) {
 			$("#total"+row).val(""); 
 		} else {
 			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
+				url: 'php_action/fetchSelectedProductSucu.php',
 				type: 'post',
 				data: {productId : productId},
 				dataType: 'json',
@@ -530,77 +530,7 @@ function getProductData(row = null) {
 	}
 } // /select on product data
 
-
-function getProductData_old(row = null) {
-	if(row) {
-		var productId = $("#productName"+row).val();		
-		
-		if(productId == "") {
-			$("#rate"+row).val("");
-
-			$("#quantity"+row).val("");						
-			$("#total"+row).val("");
-
-			// remove check if product name is selected
-			// var tableProductLength = $("#productTable tbody tr").length;			
-			// for(x = 0; x < tableProductLength; x++) {
-			// 	var tr = $("#productTable tbody tr")[x];
-			// 	var count = $(tr).attr('id');
-			// 	count = count.substring(3);
-
-			// 	var productValue = $("#productName"+row).val()
-
-			// 	if($("#productName"+count).val() == "") {					
-			// 		$("#productName"+count).find("#changeProduct"+productId).removeClass('div-hide');	
-			// 		console.log("#changeProduct"+count);
-			// 	}											
-			// } // /for
-
-		} else {
-			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
-				type: 'post',
-				data: {productId : productId},
-				dataType: 'json',
-				success:function(response) {
-					// setting the rate value into the rate input field
-					
-					$("#rate"+row).val(response.rate);
-					$("#rateValue"+row).val(response.rate);
-
-					$("#quantity"+row).val(1);
-
-					var total = Number(response.rate) * 1;
-					total = total.toFixed(2);
-					$("#total"+row).val(total);
-					$("#totalValue"+row).val(total);
-					
-					// check if product name is selected
-					// var tableProductLength = $("#productTable tbody tr").length;					
-					// for(x = 0; x < tableProductLength; x++) {
-					// 	var tr = $("#productTable tbody tr")[x];
-					// 	var count = $(tr).attr('id');
-					// 	count = count.substring(3);
-
-					// 	var productValue = $("#productName"+row).val()
-
-					// 	if($("#productName"+count).val() != productValue) {
-					// 		// $("#productName"+count+" #changeProduct"+count).addClass('div-hide');	
-					// 		$("#productName"+count).find("#changeProduct"+productId).addClass('div-hide');								
-					// 		console.log("#changeProduct"+count);
-					// 	}											
-					// } // /for
-			
-					subAmount();
-				} // /success
-			}); // /ajax function to fetch the product data	
-		}
-				
-	} else {
-		alert('no row! please refresh the page');
-	}
-} // /select on product data
-
+ 
 // table total
 function getTotal(row = null) {
 	console.log("getTotal" , row)

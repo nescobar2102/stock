@@ -1,14 +1,12 @@
 <div class="modal fade" id="addBrandModel" tabindex="-1" role="dialog">
   <div class="modal-dialog">
-    <div class="modal-content">
-    	
+    <div class="modal-content">    	
     	<form class="form-horizontal" id="submitBrandForm" action="php_action/createBrand_1.php" method="POST">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	        <h4 class="modal-title"><i class="fa fa-plus"></i> Agregar Corporación</h4>
 	      </div>
 	      <div class="modal-body">
-
 	      	<div id="add-brand-messages"></div>
 
 	        <div class="form-group">
@@ -17,7 +15,15 @@
 				    <div class="col-sm-8">
 				      <input type="text" class="form-control" id="brandName" placeholder="Nombre del Corporación" name="brandName" autocomplete="off">
 				    </div>
-	        </div> <!-- /form-group-->	         	        
+	        </div> <!-- /form-group-->	      
+			
+	        <div class="form-group">
+	        	<label for="contacto" class="col-sm-3 control-label">Contacto: </label>
+	        	<label class="col-sm-1 control-label">: </label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="contacto" placeholder="Contacto de la Corporación" name="contacto" autocomplete="off">
+				    </div>
+	        </div> <!-- /form-group-->	   	        
 	        <div class="form-group">
 	        	<label for="brandStatus" class="col-sm-3 control-label">Estado: </label>
 	        	<label class="col-sm-1 control-label">: </label>
@@ -68,11 +74,18 @@
 					</div>
 
 		      <div class="edit-brand-result">
-		      	<div class="form-group">
-		        	<label for="editBrandName" class="col-sm-3 control-label">Nombre: </label>
+			  <div class="form-group">
+		        	<label for="editBrandName" class="col-sm-3 control-label">Corporacion: </label>
 		        	<label class="col-sm-1 control-label">: </label>
 					    <div class="col-sm-8">
 					      <input type="text" class="form-control" id="editBrandName" placeholder="Nombre de la Corporación" name="editBrandName" autocomplete="off">
+					    </div>
+		        </div> <!-- /form-group-->	
+		      	<div class="form-group">
+		        	<label for="editBrandName1" class="col-sm-3 control-label">Contacto: </label>
+		        	<label class="col-sm-1 control-label">: </label>
+					    <div class="col-sm-8">
+					      <input type="text" class="form-control" id="editBrandName1" placeholder="Contacto de la Corporación" name="editBrandName1" autocomplete="off">
 					    </div>
 		        </div> <!-- /form-group-->	         	        
 		        <div class="form-group">

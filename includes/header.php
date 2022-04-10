@@ -54,19 +54,28 @@
 
       	<li id="navDashboard"><a href="index.php"><i class="glyphicon glyphicon-list-alt"></i>  Inicio</a></li>        
         
-        <li id="navBrand1"><a href="brand_1.php"><i class="glyphicon glyphicon-btc"></i>  Corporaciones</a></li>        
+        <li id="navBrand1"><a href="brand_1.php"><i class="glyphicon glyphicon-btc"></i> Corporaciones</a></li>        
 
-        <li id="navBrand"><a href="brand.php"><i class="glyphicon glyphicon-barcode"></i>  Dark Store</a></li>    
+        <li id="navBrand"><a href="brand.php"><i class="glyphicon glyphicon-barcode"></i> Almacén</a></li>    
 
-        <li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i> Categorías</a></li>        
+        <!--li id="navCategories"><a href="categories.php"> <i class="glyphicon glyphicon-th-list"></i> Categorías</a></li-->        
 
-        <li id="navProduct"><a href="product.php"> <i class="glyphicon glyphicon-ruble"></i> Productos </a></li>     
+         
+        <li class="dropdown" id="navProduct">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Stock <span class="caret"></span></a>
+          <ul class="dropdown-menu">            
+            <li id="topNavAddOrder"><a href="product.php"> <i class="glyphicon glyphicon-shopping-cart"></i> Ingreso al DarkStore</a></li>            
+            <!--li id="topNavManageOrder"><a href="product.php"> <i class="glyphicon glyphicon-share"></i> Agregar Stock -> Almacén</a></li-->            
+          </ul>
+        </li> 
 
         <li class="dropdown" id="navOrder">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Ordenes <span class="caret"></span></a>
           <ul class="dropdown-menu">            
-            <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Agregar Ordenes</a></li>            
-            <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Gestionar Ordenes</a></li>            
+            <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Agregar Ordenes</a></li>   
+            <li id="topNavAddOrder"><a href="orders_sucursale.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Agregar Ordenes Sucursales</a></li>           
+            <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Gestionar Ordenes Almacén</a></li>       
+            <li id="topNavManageOrder"><a href="orders_sucursale.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Gestionar Ordenes Sucursales</a></li>         
           </ul>
         </li> 
 

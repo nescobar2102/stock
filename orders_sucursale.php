@@ -19,9 +19,9 @@ if($_GET['o'] == 'add') {
   <li>Ordenes</li>
   <li class="active">
   	<?php if($_GET['o'] == 'add') { ?>
-  		Agregar Salida
+  		Agregar Orden salida sucursal
 		<?php } else if($_GET['o'] == 'manord') { ?>
-			Listado de ordenes
+			Listado de ordenes salida sucursal
 		<?php } // /else manage order ?>
   </li>
 </ol>
@@ -30,7 +30,7 @@ if($_GET['o'] == 'add') {
 <h4>
 	<i class='glyphicon glyphicon-circle-arrow-right'></i>
 	<?php if($_GET['o'] == 'add') {
-		echo "Agregar Salida";
+		echo "Agregar Salida surcursal";
 	} else if($_GET['o'] == 'manord') { 
 		echo "Listado de ordenes";
 	} else if($_GET['o'] == 'editOrd') { 
@@ -45,7 +45,7 @@ if($_GET['o'] == 'add') {
 	<div class="panel-heading">
 
 		<?php if($_GET['o'] == 'add') { ?>
-  		<i class="glyphicon glyphicon-plus-sign"></i>	Agregar Salida
+  		<i class="glyphicon glyphicon-plus-sign"></i>	Agregar Salida sucursal
 		<?php } else if($_GET['o'] == 'manord') { ?>
 			<i class="glyphicon glyphicon-edit"></i> Listado de ordenes
 		<?php } else if($_GET['o'] == 'editOrd') { ?>
@@ -61,7 +61,7 @@ if($_GET['o'] == 'add') {
 
 			<div class="success-messages"></div> <!--/success-messages-->
 
-  		<form class="form-horizontal" method="POST" action="php_action/createOrder.php" id="createOrderForm">
+  		<form class="form-horizontal" method="POST" action="php_action/createOrderSucursale.php" id="createOrderForm">
 
 			  <div class="form-group">
 			    <!--label for="orderDate" class="col-sm-2 control-label">Fecha de orden</label-->
@@ -71,13 +71,19 @@ if($_GET['o'] == 'add') {
 			    </div>
 			  </div> <!--/form-group-->
 			  <div class="form-group">
+			    <label for="clientName" class="col-sm-2 control-label">Nombre del cliente</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Cliente" autocomplete="off" />
+			    </div>
+			  </div> <!--/form-group-->
+			  <div class="form-group">
 				  
-				  <label for="clientName" class="col-sm-2 control-label">Corporación</label>
-				  <div class="col-sm-10">
-				  <select class="form-control" name="brandCorporation" id="brandCorporation">
+				  <label for="clientName" class="col-sm-2 control-label">Sucursales</label>
+				  <div class="col-sm-10" id="sucursales">
+				  <select class="form-control" name="brandSurcursale" id="brandSurcursale" >
 							  <option value="">-- Selecciona --</option>
 							  <?php
-								  $productSql = "SELECT * FROM brands_1 WHERE brand_status = 1 AND brand_active = 1 ";
+								  $productSql = "SELECT * FROM brands WHERE brand_status = 1 AND brand_active = 1 ";
 								  $productData = $connect->query($productSql);
   
 								  while($row = $productData->fetch_array()) {									 		
@@ -85,42 +91,21 @@ if($_GET['o'] == 'add') {
 									  } // /while 
   
 							  ?>
-						  </select>
-					<!--input type="text" class="form-control" id="clientName" name="clientName" placeholder="Cliente" autocomplete="off" /-->
+						  </select>		 
 				  </div>
 				</div> <!--/form-group-->
 			  <div class="form-group">
-				  
-			    <label for="clientName" class="col-sm-2 control-label">Sucursales</label>
-			    <div class="col-sm-10" id="sucursales">
-				<!--select class="form-control" name="brandSurcursale" id="brandSurcursale" >
-							<option value="">-- Selecciona --</option>
-							<?php
-								$productSql = "SELECT * FROM brands WHERE brand_status = 1 AND brand_active = 1 ";
-								$productData = $connect->query($productSql);
-
-								while($row = $productData->fetch_array()) {									 		
-									echo "<option value='".$row['brand_id']."'>".$row['brand_name']."</option>";
-									} // /while 
-
-							?>
-						</select-->
-			      <!--input type="text" class="form-control" id="clientName" name="clientName" placeholder="Cliente" autocomplete="off" /-->
-			    </div>
-			  </div> <!--/form-group-->
-			  <div class="form-group">
 			    <label for="clientContact" class="col-sm-2 control-label">Teléfono del cliente</label>
-			    <div class="col-sm-3">
+			    <div class="col-sm-10">
 			      <input type="text" class="form-control" id="clientContact" name="clientContact" placeholder="Teléfono" autocomplete="off" />
 			    </div>
-			  </div> <!--/form-group-->			  
-
-			  <table class="table" id="productTable">
+			  </div>  
+			  <table class="table" id="productTable1">
 			  	<thead>
 			  		<tr>			  			
 			  			<th style="width:40%;">Producto</th>
 			  			<!--th style="width:20%;">Precio</th-->
-			  			<th style="width:15%;">Stock Almacén</th>			  			
+			  			<th style="width:15%;">Stock Sucursale</th>			  			
 			  			<th style="width:15%;">Salida Stock</th>			  			
 			  			<th style="width:10%;"></th>
 			  		</tr>
@@ -272,7 +257,7 @@ if($_GET['o'] == 'add') {
 					<tr>
 						<th>#</th>
 						<th>Fecha</th>
-						<th>Corporacion</th>
+						<th>Cliente</th>
 						<th>Sucursal</th>
 						<th>Contacto</th>
 						<th>Total de productos</th> 
@@ -283,8 +268,7 @@ if($_GET['o'] == 'add') {
 
 		<?php 
 		// /else manage order
-		} 
-		else if($_GET['o'] == 'editOrd') {
+		} else if($_GET['o'] == 'editOrd') {
 			// get order
 			?>
 			
@@ -585,7 +569,7 @@ if($_GET['o'] == 'add') {
 <!-- /remove order-->
 
 
-<script src="custom/js/order.js"></script>
+<script src="custom/js/order_sucursale.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>
 

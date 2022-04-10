@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$sql = "SELECT `brand_id`, `brand_name`, `brand_active`, `brand_status`, ` brand_name_corporation` FROM `brands`  WHERE brand_status = 1";
+$sql = "SELECT `brand_id`, `brand_name`, `brand_active`, `brand_status`, `brand_name_corporation` FROM `brands`  WHERE brand_status = 1";
  
 $result = $connect->query($sql);
 

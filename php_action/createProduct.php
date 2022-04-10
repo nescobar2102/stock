@@ -3,7 +3,7 @@
 require_once 'core.php';
 
 $valid['success'] = array('success' => false, 'messages' => array());
-
+ 
 if($_POST) {	
 
 	$productName 		= $_POST['productName'];
@@ -11,23 +11,14 @@ if($_POST) {
   $quantity 			= $_POST['quantity'];
   $rate 					= $_POST['rate'];
   $brandName 			= $_POST['brandName'];
-  $categoryName 	= $_POST['categoryName'];
+  //$categoryName 	= $_POST['categoryName'];
   $productStatus 	= $_POST['productStatus'];
   $sku 	= $_POST['sku'];
   $modelo 	= $_POST['modelo'];
-  $ubicacion 	= $_POST['ubicacion'];
-	$type = explode('.', $_FILES['productImage']['name']);
-	$type = $type[count($type)-1];		
-	$url = '../assests/images/stock/'.uniqid(rand()).'.'.$type;
-	if(in_array($type, array('gif', 'jpg', 'jpeg', 'png', 'JPG', 'GIF', 'JPEG', 'PNG'))) {
-		if(is_uploaded_file($_FILES['productImage']['tmp_name'])) {			
-			if(move_uploaded_file($_FILES['productImage']['tmp_name'], $url)) {
-				
-			/*	$sql = "INSERT INTO product (product_name, product_image, brand_id, categories_id, quantity, rate, active, sku, status) 
-				VALUES ('$productName', '$url', '$brandName', '$categoryName', '$quantity', '$rate', '$productStatus', '$sku' 1)";*/
-
-			$sql = "INSERT INTO product_coorporation (product_name, product_image, brand_id, categories_id, quantity, rate, active, sku,modelo,ubicacion, status) 
-			VALUES ('$productName', '$url', '$brandName', '$categoryName', '$quantity', '$rate', '$productStatus', '$sku', '$modelo'  ,'$ubicacion' ,1)";
+  $ubicacion 	= $_POST['ubicacion']; 
+  $fecha_ingreso 	= $_POST['orderDate']; 
+					$sql = "INSERT INTO product_coorporation (product_name,  brand_id,   quantity, rate, active, sku,modelo,ubicacion,fecha_ingreso, status) 
+			VALUES ('$productName',  '$brandName',   '$quantity', '$rate', '$productStatus', '$sku', '$modelo'  ,'$ubicacion' ,'$fecha_ingreso',1)";
 
 				if($connect->query($sql) === TRUE) {
 					$valid['success'] = true;
@@ -36,12 +27,7 @@ if($_POST) {
 					$valid['success'] = false;
 					$valid['messages'] = "Error no se ha podido guardar";
 				}
-
-			}	else {
-				return false;
-			}	// /else	
-		} // if
-	} // if in_array 		
+		
 
 	$connect->close();
 

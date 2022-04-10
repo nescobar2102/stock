@@ -112,6 +112,7 @@ function editBrands(brandId = null) {
 			data: {brandId : brandId},
 			dataType: 'json',
 			success:function(response) {
+				console.log("-----------", response.brand_name)
 				// modal loading
 				$('.modal-loading').addClass('div-hide');
 				// modal result
@@ -120,7 +121,9 @@ function editBrands(brandId = null) {
 				$('.editBrandFooter').removeClass('div-hide');
 
 				// setting the brand name value 
-				$('#editBrandName').val(response.brand_name);
+				$('#editBrandName').val(response.brand_name);				
+				// setting the brand contacto value 
+				$('#editBrandName1').val(response.contacto);
 				// setting the brand status value
 				$('#editBrandStatus').val(response.brand_active);
 				// brand id 
@@ -133,8 +136,8 @@ function editBrands(brandId = null) {
 					$(".text-danger").remove();
 					// remove the form error
 					$('.form-group').removeClass('has-error').removeClass('has-success');			
-
-					var brandName = $('#editBrandName').val();
+					var contacto = $('#editBrandName1').val();	 
+					var brandName = $('#editBrandName').val();	 							
 					var brandStatus = $('#editBrandStatus').val();
 
 					if(brandName == "") {
@@ -145,6 +148,16 @@ function editBrands(brandId = null) {
 						$("#editBrandName").find('.text-danger').remove();
 						// success out for form 
 						$("#editBrandName").closest('.form-group').addClass('has-success');	  	
+					}
+					
+					if(contacto == "") {
+						$("#editBrandName1").after('<p class="text-danger">Este campo es obligatorio</p>');
+						$('#editBrandName1').closest('.form-group').addClass('has-error');
+					} else {
+						// remov error text field
+						$("#editBrandName1").find('.text-danger').remove();
+						// success out for form 
+						$("#editBrandName1").closest('.form-group').addClass('has-success');	  	
 					}
 
 					if(brandStatus == "") {
@@ -158,7 +171,7 @@ function editBrands(brandId = null) {
 						$("#editBrandStatus").closest('.form-group').addClass('has-success');	  	
 					}
 
-					if(brandName && brandStatus) {
+					if(brandName && brandStatus && contacto) {
 						var form = $(this);
 
 						// submit btn

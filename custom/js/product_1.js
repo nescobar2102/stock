@@ -1,10 +1,10 @@
-var manageProductTable;
+var manageProductTable1;
 
 $(document).ready(function() {
 	// top nav bar 
 	$('#navProduct').addClass('active');
 	// manage product data table
-	manageProductTable = $('#manageProductTable').DataTable({
+	manageProductTable1 = $('#manageProductTable1').DataTable({
 		'ajax': 'php_action/fetchProduct.php',
 		'order': []
 	});
@@ -157,7 +157,7 @@ $(document).ready(function() {
 							}); // /.alert
 
 		          // reload the manage student table
-							manageProductTable.ajax.reload(null, true);
+							manageProductTable1.ajax.reload(null, true);
 
 							// remove text-error 
 							$(".text-danger").remove();
@@ -176,7 +176,8 @@ $(document).ready(function() {
 	}); // /add product modal btn clicked
 	
 
-	// remove product 	
+	// add product 	 carga masiva
+	
 
 }); // document.ready fucntion
 
@@ -354,7 +355,7 @@ function editProduct(productId = null) {
 									}); // /.alert
 
 				          // reload the manage student table
-									manageProductTable.ajax.reload(null, true);
+									manageProductTable1.ajax.reload(null, true);
 
 									// remove text-error 
 									$(".text-danger").remove();
@@ -422,7 +423,7 @@ function editProduct(productId = null) {
 									}); // /.alert
 
 				          // reload the manage student table
-									manageProductTable.ajax.reload(null, true);
+									manageProductTable1.ajax.reload(null, true);
 
 									$(".fileinput-remove-button").click();
 
@@ -477,7 +478,7 @@ function removeProduct(productId = null) {
 						$("#removeProductModal").modal('hide');
 
 						// update the product table
-						manageProductTable.ajax.reload(null, false);
+						manageProductTable1.ajax.reload(null, false);
 
 						// remove success messages
 						$(".remove-messages").html('<div class="alert alert-success">'+

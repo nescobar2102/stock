@@ -6,19 +6,28 @@ $sql = "SELECT * FROM product WHERE status = 1";
 $query = $connect->query($sql);
 $countProduct = $query->num_rows;
 
+$sql1 = "SELECT * FROM product_coorporation WHERE status = 1";
+$query = $connect->query($sql1);
+$countProduct1 = $query->num_rows;
+
 $orderSql = "SELECT * FROM orders WHERE order_status = 1";
 $orderQuery = $connect->query($orderSql);
 $countOrder = $orderQuery->num_rows;
 
 $totalRevenue = 0;
 while ($orderResult = $orderQuery->fetch_assoc()) {
-	$totalRevenue += $orderResult['paid'];
+	//$totalRevenue += $orderResult['paid'];
 }
 
+//productos de corporation
+$lowStockSql1 = "SELECT * FROM product_coorporation WHERE quantity <=30  AND status = 1";
+$lowStockQuery1 = $connect->query($lowStockSql1);
+$countLowStockCorporation = $lowStockQuery1->num_rows;
+
+//productos de sucursale
 $lowStockSql = "SELECT * FROM product WHERE quantity <= 3 AND status = 1";
 $lowStockQuery = $connect->query($lowStockSql);
 $countLowStock = $lowStockQuery->num_rows;
-
 $connect->close();
 
 ?>
@@ -42,7 +51,12 @@ $connect->close();
 			<div class="panel-heading">
 				
 				<a href="product.php" style="text-decoration:none;color:black;">
-					Total de productos
+					Total de productos de Corporación
+					<span class="badge pull pull-right"><?php echo $countProduct1; ?></span>	
+				</a>
+				<br>
+				<a href="product.php" style="text-decoration:none;color:black;">
+					Total de productos en Sucursales
 					<span class="badge pull pull-right"><?php echo $countProduct; ?></span>	
 				</a>
 				
@@ -54,7 +68,7 @@ $connect->close();
 			<div class="panel panel-info">
 			<div class="panel-heading">
 				<a href="orders.php?o=manord" style="text-decoration:none;color:black;">
-					Total ordenes
+					Total ordenes de salida
 					<span class="badge pull pull-right"><?php echo $countOrder; ?></span>
 				</a>
 					
@@ -66,10 +80,15 @@ $connect->close();
 		<div class="panel panel-danger">
 			<div class="panel-heading">
 				<a href="product.php" style="text-decoration:none;color:black;">
-					Inventario bajo
+					Stock bajo Sucursal
 					<span class="badge pull pull-right"><?php echo $countLowStock; ?></span>	
 				</a>
-				
+				<br>
+				<a href="product.php" style="text-decoration:none;color:black;">
+					Stock bajo de Corporación
+					<span class="badge pull pull-right"><?php echo $countLowStockCorporation; ?></span>	
+				</a>
+							
 			</div> <!--/panel-hdeaing-->
 		</div> <!--/panel-->
 	</div> <!--/col-md-4-->
@@ -96,7 +115,7 @@ $connect->close();
 		  </div>
 
 		  <div class="cardContainer">
-		    <p> <i class="glyphicon glyphicon-usd"></i> Ingresos totales</p>
+		    <p> <i class="glyphicon glyphicon-usd"></i>Despachos</p>
 		  </div>
 		</div> 
 

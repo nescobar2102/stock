@@ -15,17 +15,17 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				    <select class="form-control" name="brandCorporation" id="brandCorporation" >
-					<option value="">-- Selecciona --</option>
-					<?php
-						$productSql = "SELECT * FROM brands_1 WHERE brand_status = 1 AND brand_active = 1 ";
-						$productData = $connect->query($productSql);
+							<option value="">-- Selecciona --</option>
+							<?php
+								$productSql = "SELECT * FROM brands_1 WHERE brand_status = 1 AND brand_active = 1 ";
+								$productData = $connect->query($productSql);
 
-						while($row = $productData->fetch_array()) {									 		
-							echo "<option value='".$row['brand_name']."'>".$row['brand_name']."</option>";
-							} // /while 
+								while($row = $productData->fetch_array()) {									 		
+									echo "<option value='".$row['brand_name']."'>".$row['brand_name']."</option>";
+									} // /while 
 
-					?>
-				</select>
+							?>
+						</select>
 				    </div>
 	        </div> <!-- /form-group-->	 
 
@@ -41,7 +41,7 @@
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
 				      <select class="form-control" id="brandStatus" name="brandStatus">
-				      	<option value="">-- Seleciona--</option>
+				      	<option value="">-- Selecciona--</option>
 				      	<option value="1">Disponible</option>
 				      	<option value="2">No disponible</option>
 				      </select>

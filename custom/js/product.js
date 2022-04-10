@@ -11,6 +11,7 @@ $(document).ready(function() {
 
 	// add product modal btn clicked
 	$("#addProductModalBtn").unbind('click').bind('click', function() {
+	 
 		// // product form reset
 		$("#submitProductForm")[0].reset();		
 
@@ -19,45 +20,17 @@ $(document).ready(function() {
 		// remove from-group error
 		$(".form-group").removeClass('has-error').removeClass('has-success');
 
-		$("#productImage").fileinput({
-	      overwriteInitial: true,
-		    maxFileSize: 2500,
-		    showClose: false,
-		    showCaption: false,
-		    browseLabel: '',
-		    removeLabel: '',
-		    browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
-		    removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
-		    removeTitle: 'Cancel or reset changes',
-		    elErrorContainer: '#kv-avatar-errors-1',
-		    msgErrorClass: 'alert alert-block alert-danger',
-		    defaultPreviewContent: '<img src="assests/images/photo_default.png" alt="Profile Image" style="width:100%;">',
-		    layoutTemplates: {main2: '{preview} {remove} {browse}'},								    
-	  		allowedFileExtensions: ["jpg", "png", "gif", "JPG", "PNG", "GIF"]
-			});   
-
+	   
 		// submit product form
 		$("#submitProductForm").unbind('submit').bind('submit', function() {
-
-			// form validation
-			var productImage = $("#productImage").val();
+		 
 			var productName = $("#productName").val();
 			var quantity = $("#quantity").val();
 			var rate = $("#rate").val();
 			var brandName = $("#brandName").val();
-			var categoryName = $("#categoryName").val();
+		//	var categoryName = $("#categoryName").val();
 			var productStatus = $("#productStatus").val();
 	
-			if(productImage == "") {
-				$("#productImage").closest('.center-block').after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#productImage').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#productImage").find('.text-danger').remove();
-				// success out for form 
-				$("#productImage").closest('.form-group').addClass('has-success');	  	
-			}	// /else
-
 			if(productName == "") {
 				$("#productName").after('<p class="text-danger">Este campo es obligatorio</p>');
 				$('#productName').closest('.form-group').addClass('has-error');
@@ -97,7 +70,7 @@ $(document).ready(function() {
 				// success out for form 
 				$("#brandName").closest('.form-group').addClass('has-success');	  	
 			}	// /else
-
+/*
 			if(categoryName == "") {
 				$("#categoryName").after('<p class="text-danger">Este campo es obligatorio</p>');
 				$('#categoryName').closest('.form-group').addClass('has-error');
@@ -106,7 +79,7 @@ $(document).ready(function() {
 				$("#categoryName").find('.text-danger').remove();
 				// success out for form 
 				$("#categoryName").closest('.form-group').addClass('has-success');	  	
-			}	// /else
+			}	// /else*/
 
 			if(productStatus == "") {
 				$("#productStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
@@ -118,7 +91,8 @@ $(document).ready(function() {
 				$("#productStatus").closest('.form-group').addClass('has-success');	  	
 			}	// /else
 
-			if(productImage && productName && quantity && rate && brandName && categoryName && productStatus) {
+			//if(productImage && productName && quantity && rate && brandName && categoryName && productStatus) {
+				if( productName && quantity && rate && brandName  && productStatus ) {
 				// submit loading button
 				$("#createProductBtn").button('loading');
 
@@ -209,23 +183,7 @@ function editProduct(productId = null) {
 
 				$("#editProductImage").fileinput({		      
 				});  
-
-				// $("#editProductImage").fileinput({
-		  //     overwriteInitial: true,
-			 //    maxFileSize: 2500,
-			 //    showClose: false,
-			 //    showCaption: false,
-			 //    browseLabel: '',
-			 //    removeLabel: '',
-			 //    browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>',
-			 //    removeIcon: '<i class="glyphicon glyphicon-remove"></i>',
-			 //    removeTitle: 'Cancel or reset changes',
-			 //    elErrorContainer: '#kv-avatar-errors-1',
-			 //    msgErrorClass: 'alert alert-block alert-danger',
-			 //    defaultPreviewContent: '<img src="stock/'+response.product_image+'" alt="Profile Image" style="width:100%;">',
-			 //    layoutTemplates: {main2: '{preview} {remove} {browse}'},								    
-		  // 		allowedFileExtensions: ["jpg", "png", "gif", "JPG", "PNG", "GIF"]
-				// });  
+ 
 
 				// product id 
 				$(".editProductFooter").append('<input type="hidden" name="productId" id="productId" value="'+response.product_id+'" />');				
@@ -247,13 +205,14 @@ function editProduct(productId = null) {
 				// update the product data function
 				$("#editProductForm").unbind('submit').bind('submit', function() {
 
+					console.log("#qewrthgfdsasfgrthjgbsadfrghgfdertyhgfdsertyhg")
 					// form validation
 					var productImage = $("#editProductImage").val();
 					var productName = $("#editProductName").val();
 					var quantity = $("#editQuantity").val();
-					var rate = $("#editRate").val();
+				//	var rate = $("#editRate").val();
 					var brandName = $("#editBrandName").val();
-					var categoryName = $("#editCategoryName").val();
+				//	var categoryName = $("#editCategoryName").val();
 					var productStatus = $("#editProductStatus").val();
 								
 
@@ -276,7 +235,7 @@ function editProduct(productId = null) {
 						// success out for form 
 						$("#editQuantity").closest('.form-group').addClass('has-success');	  	
 					}	// /else
-
+/*
 					if(rate == "") {
 						$("#editRate").after('<p class="text-danger">Este campo es obligatorio</p>');
 						$('#editRate').closest('.form-group').addClass('has-error');
@@ -285,7 +244,7 @@ function editProduct(productId = null) {
 						$("#editRate").find('.text-danger').remove();
 						// success out for form 
 						$("#editRate").closest('.form-group').addClass('has-success');	  	
-					}	// /else
+					}	// /else*/
 
 					if(brandName == "") {
 						$("#editBrandName").after('<p class="text-danger">Este campo es obligatorio</p>');
@@ -296,7 +255,7 @@ function editProduct(productId = null) {
 						// success out for form 
 						$("#editBrandName").closest('.form-group').addClass('has-success');	  	
 					}	// /else
-
+/*
 					if(categoryName == "") {
 						$("#editCategoryName").after('<p class="text-danger">Este campo es obligatorio</p>');
 						$('#editCategoryName').closest('.form-group').addClass('has-error');
@@ -306,7 +265,7 @@ function editProduct(productId = null) {
 						// success out for form 
 						$("#editCategoryName").closest('.form-group').addClass('has-success');	  	
 					}	// /else
-
+*/
 					if(productStatus == "") {
 						$("#editProductStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
 						$('#editProductStatus').closest('.form-group').addClass('has-error');
@@ -317,7 +276,7 @@ function editProduct(productId = null) {
 						$("#editProductStatus").closest('.form-group').addClass('has-success');	  	
 					}	// /else					
 
-					if(productName && quantity && rate && brandName && categoryName && productStatus) {
+					if(productName && quantity && rate && brandName  && productStatus) {
 						// submit loading button
 						$("#editProductBtn").button('loading');
 

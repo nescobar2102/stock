@@ -8,7 +8,6 @@ $(document).ready(function() {
 	$("#navOrder").addClass('active');
 
 	if(divRequest == 'add')  {
-	 
 		// add order	
 		// top nav child bar 
 		$('#topNavAddOrder').addClass('active');	
@@ -23,31 +22,27 @@ $(document).ready(function() {
 			$('.form-group').removeClass('has-error').removeClass('has-success');
 			$('.text-danger').remove();
 				
-			var orderDate = $("#orderDate").val(); 
-			var brandCorporation = document.getElementById('brandCorporation').value;
-			var brandSurcursale = document.getElementById('brandSurcursale').value;
+			var orderDate = $("#orderDate").val();
+			var clientName = $("#clientName").val();
 			var clientContact = $("#clientContact").val();
- 
+			var paid = $("#paid").val();
+			var discount = $("#discount").val();
+			var paymentType = $("#paymentType").val();
+			var paymentStatus = $("#paymentStatus").val();		
+
 			// form validation 
 			if(orderDate == "") {
 				$("#orderDate").after('<p class="text-danger"> Este campo es obligatorio </p>');
 				$('#orderDate').closest('.form-group').addClass('has-error');
 			} else {
 				$('#orderDate').closest('.form-group').addClass('has-success');
-			} // /else 
-
-			if(brandCorporation == "") {
-				$("#brandCorporation").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#brandCorporation').closest('.form-group').addClass('has-error');
-			} else {
-				$('#brandCorporation').closest('.form-group').addClass('has-success');
 			} // /else
 
-			if(brandSurcursale == "") {
-				$("#brandSurcursale").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#brandSurcursale').closest('.form-group').addClass('has-error');
+			if(clientName == "") {
+				$("#clientName").after('<p class="text-danger"> Este campo es obligatorio </p>');
+				$('#clientName').closest('.form-group').addClass('has-error');
 			} else {
-				$('#brandSurcursale').closest('.form-group').addClass('has-success');
+				$('#clientName').closest('.form-group').addClass('has-success');
 			} // /else
 
 			if(clientContact == "") {
@@ -57,7 +52,7 @@ $(document).ready(function() {
 				$('#clientContact').closest('.form-group').addClass('has-success');
 			} // /else
 
-		/*	if(paid == "") {
+			if(paid == "") {
 				$("#paid").after('<p class="text-danger"> Este campo es obligatorio </p>');
 				$('#paid').closest('.form-group').addClass('has-error');
 			} else {
@@ -83,7 +78,7 @@ $(document).ready(function() {
 				$('#paymentStatus').closest('.form-group').addClass('has-error');
 			} else {
 				$('#paymentStatus').closest('.form-group').addClass('has-success');
-			} // /else*/
+			} // /else
 
 
 			// array validation
@@ -96,7 +91,7 @@ $(document).ready(function() {
 		    	$("#"+productNameId+"").closest('.form-group').addClass('has-error');	    		    	    	
 	      } else {      	
 		    	$("#"+productNameId+"").closest('.form-group').addClass('has-success');	    		    		    	
-	      }        	  
+	      }          
 	   	} // for
 
 	   	for (var x = 0; x < productName.length; x++) {       						
@@ -355,63 +350,28 @@ function printOrder(orderId = null) {
 			type: 'post',
 			data: {orderId: orderId},
 			dataType: 'text',
-			success:function(response) { 
+			success:function(response) {
+				
 				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-					mywindow.document.write('<html><head><title>Order de Salida</title>');        
-					mywindow.document.write('</head><body>');
-					mywindow.document.write(response);
-					mywindow.document.write('</body></html>');
+        mywindow.document.write('<html><head><title>Order Invoice</title>');        
+        mywindow.document.write('</head><body>');
+        mywindow.document.write(response);
+        mywindow.document.write('</body></html>');
 
-     //   mywindow.document.close(); // necessary for IE >= 10
+        mywindow.document.close(); // necessary for IE >= 10
         mywindow.focus(); // necessary for IE >= 10
 
-     //   mywindow.print();
-      mywindow.close();
+        mywindow.print();
+        mywindow.close();
 				
 			}// /success function
 		}); // /ajax function to fetch the printable order
 	} // /if orderId
 } // /print order function
 
-$('#brandCorporation').on('change', function() {
- 
-// select on sucursal de un almacen
- 
-		var almacenid =  $(this).find(":selected").val()		
-	 
-		if(almacenid != "") {
-			$("#sucursales").empty();  
-			$.ajax({
-				url: 'php_action/fetchSelectedSucursal.php',
-				type: 'post',
-				data: {almacenid : almacenid},
-				 dataType: 'json',
-				success:function(response) {
-					console.log("response surcursales" , response)
-					// setting the rate value into the rate input field
-					var tr =    
-						'<select class="form-control" name="brandSurcursale" id="brandSurcursale">'+
-							'<option value="">--Seleccione--</option>';
-							$.each(response, function(index, value) { 
-								tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
-							});
-														
-						tr += '</select>';  
-			 				
-					$("#sucursales").append(tr);
-				 	
-				 
-				} // /success
-			}); // /ajax function to fetch the product data	
-		 }
-				
-	 
-});
-
 function addRow() {
 	$("#addRowBtn").button("loading");
-	console.log("cargando row")
-	var brandId = document.getElementById('brandCorporation').value;
+
 	var tableLength = $("#productTable tbody tr").length;
 
 	var tableRow;
@@ -431,10 +391,9 @@ function addRow() {
 	}
 
 	$.ajax({
-		url: 'php_action/fetchProductDataOrder.php',
+		url: 'php_action/fetchProductData.php',
 		type: 'post',
 		dataType: 'json',
-		data: {brandId: brandId},
 		success:function(response) {
 			$("#addRowBtn").button("reset");			
 
@@ -443,7 +402,8 @@ function addRow() {
 					'<div class="form-group">'+
 
 					'<select class="form-control" name="productName[]" id="productName'+count+'" onchange="getProductData('+count+')" >'+
-						'<option value="">--Seleccione--</option>';
+						'<option value="">~~SELECT~~</option>';
+						// console.log(response);
 						$.each(response, function(index, value) {
 							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
 						});
@@ -452,8 +412,8 @@ function addRow() {
 					'</div>'+
 				'</td>'+
 				'<td style="padding-left:20px;"">'+
-					'<input type="text" name="stock[]" id="stock'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
-					'<input type="hidden" name="stockValue[]" id="stockValue'+count+'" autocomplete="off" class="form-control" />'+
+					'<input type="text" name="rate[]" id="rate'+count+'" autocomplete="off" disabled="true" class="form-control" />'+
+					'<input type="hidden" name="rateValue[]" id="rateValue'+count+'" autocomplete="off" class="form-control" />'+
 				'</td style="padding-left:20px;">'+
 				'<td style="padding-left:20px;">'+
 					'<div class="form-group">'+
@@ -482,6 +442,8 @@ function addRow() {
 function removeProductRow(row = null) {
 	if(row) {
 		$("#row"+row).remove();
+
+
 		subAmount();
 	} else {
 		alert('error! Refresh the page again');
@@ -490,48 +452,6 @@ function removeProductRow(row = null) {
 
 // select on product data
 function getProductData(row = null) {
-	console.log("asdfgh" , row)
-	if(row) {
-		var productId = $("#productName"+row).val();		
-		
-		if(productId == "") { 
-
-			$("#quantity"+row).val("");						
-			$("#total"+row).val(""); 
-		} else {
-			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
-				type: 'post',
-				data: {productId : productId},
-				dataType: 'json',
-				success:function(response) {
-					console.log("response" , response)
-					// setting the rate value into the rate input field
-					
-					/*$("#rate"+row).val(response.rate);
-					$("#rateValue"+row).val(response.rate);*/
-					$("#stock"+row).val(response.quantity);
-					$("#stockValue"+row).val(response.quantity);
-
-					$("#quantity"+row).val(1);
-
-					var total = Number(response.rate) * 1;
-					total = total.toFixed(2);
-					$("#total"+row).val(total);
-					$("#totalValue"+row).val(total);
-				 
-					subAmount();
-				} // /success
-			}); // /ajax function to fetch the product data	
-		}
-				
-	} else {
-		alert('no row! please refresh the page');
-	}
-} // /select on product data
-
-
-function getProductData_old(row = null) {
 	if(row) {
 		var productId = $("#productName"+row).val();		
 		
@@ -558,7 +478,7 @@ function getProductData_old(row = null) {
 
 		} else {
 			$.ajax({
-				url: 'php_action/fetchSelectedProduct.php',
+				url: 'php_action/fetchSelectedProductssssssssss.php',
 				type: 'post',
 				data: {productId : productId},
 				dataType: 'json',
@@ -603,15 +523,9 @@ function getProductData_old(row = null) {
 
 // table total
 function getTotal(row = null) {
-	console.log("getTotal" , row)
 	if(row) {
-		/*var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
+		var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
 		total = total.toFixed(2);
-		$("#total"+row).val(total);
-		$("#totalValue"+row).val(total);*/
-
-		var total = Number($("#stock"+row).val()) - Number($("#quantity"+row).val());
-	//	total = total.toFixed(2);
 		$("#total"+row).val(total);
 		$("#totalValue"+row).val(total);
 		
