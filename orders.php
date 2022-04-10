@@ -283,7 +283,8 @@ if($_GET['o'] == 'add') {
 
 		<?php 
 		// /else manage order
-		} else if($_GET['o'] == 'editOrd') {
+		} 
+		else if($_GET['o'] == 'editOrd') {
 			// get order
 			?>
 			

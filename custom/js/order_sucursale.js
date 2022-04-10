@@ -181,7 +181,7 @@ $(document).ready(function() {
 		$('#topNavManageOrder').addClass('active');
 
 		manageOrderTable = $("#manageOrderTable").DataTable({
-			'ajax': 'php_action/fetchOrder.php',
+			'ajax': 'php_action/fetchOrderSucursale.php',
 			'order': []
 		});		
 					
@@ -351,13 +351,13 @@ function printOrder(orderId = null) {
 	if(orderId) {		
 			
 		$.ajax({
-			url: 'php_action/printOrder.php',
+			url: 'php_action/printOrderSucursale.php',
 			type: 'post',
 			data: {orderId: orderId},
 			dataType: 'text',
 			success:function(response) { 
 				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-					mywindow.document.write('<html><head><title>Order de Salida</title>');        
+					mywindow.document.write('<html><head><title>Order de Salida Sucursal</title>');        
 					mywindow.document.write('</head><body>');
 					mywindow.document.write(response);
 					mywindow.document.write('</body></html>');

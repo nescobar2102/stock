@@ -257,7 +257,7 @@ if($_GET['o'] == 'add') {
 					<tr>
 						<th>#</th>
 						<th>Fecha</th>
-						<th>Corporacion</th>
+						<th>Cliente</th>
 						<th>Sucursal</th>
 						<th>Contacto</th>
 						<th>Total de productos</th> 
