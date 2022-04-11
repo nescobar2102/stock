@@ -51,6 +51,6 @@ if (isset($_POST['enviar']))
 
 				fclose($handle);
 			}
-			//header('Location: ../product.php');
+			 header('Location: ../product.php');
 		//	echo json_encode($valid);
 } 
