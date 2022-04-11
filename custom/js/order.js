@@ -348,9 +348,12 @@ $(document).ready(function() {
 
 // print order function
 function printOrder(orderId = null) {
-	if(orderId) {		
-			
-		$.ajax({
+	if(orderId) {	
+		var url = 'php_action/printOrder.php?orderId='+orderId;
+		var win = window.open(url, '_blank');
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();
+	/*	$.ajax({
 			url: 'php_action/printOrder.php',
 			type: 'post',
 			data: {orderId: orderId},
@@ -361,15 +364,15 @@ function printOrder(orderId = null) {
 					mywindow.document.write('</head><body>');
 					mywindow.document.write(response);
 					mywindow.document.write('</body></html>');
-
+				
      //   mywindow.document.close(); // necessary for IE >= 10
         mywindow.focus(); // necessary for IE >= 10
 
      //   mywindow.print();
-      mywindow.close();
+   // mywindow.close();
 				
 			}// /success function
-		}); // /ajax function to fetch the printable order
+		}); // /ajax function to fetch the printable order*/
 	} // /if orderId
 } // /print order function
 

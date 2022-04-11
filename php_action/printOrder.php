@@ -2,7 +2,7 @@
 
 require_once 'core.php';
 
-$orderId = $_POST['orderId'];
+$orderId = $_GET['orderId'];
 
 //$sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due FROM orders WHERE order_id = $orderId";
 
@@ -35,7 +35,7 @@ FROM order_item_sucursale
   WHERE order_item_sucursale.order_id= $orderId";
 $orderItemResult = $connect->query($orderItemSql);
 
- $table = '
+ echo $table = '
  <table border="1" cellspacing="0" cellpadding="20" width="100%">
 	<thead>
 		<tr >

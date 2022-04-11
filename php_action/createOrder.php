@@ -25,8 +25,7 @@ if($_POST) {
  
 	$orderItemStatus = false;
 
-	for($x = 0; $x < count($_POST['productName']); $x++) {			
-	//	$updateProductQuantitySql = "SELECT product.quantity FROM product WHERE product.product_id = ".$_POST['productName'][$x]."";
+	for($x = 0; $x < count($_POST['productName']); $x++) {			 
 		$updateProductQuantitySql = "SELECT product.quantity FROM product_coorporation as product WHERE product.product_id = ".$_POST['productName'][$x]."";
 		$updateProductQuantityData = $connect->query($updateProductQuantitySql);
 		
@@ -34,19 +33,15 @@ if($_POST) {
 		while ($updateProductQuantityResult = $updateProductQuantityData->fetch_row()) {
 			$updateQuantity[$x] = $updateProductQuantityResult[0] - $_POST['quantity'][$x];							
 				// update product table
-				//$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName'][$x]."";
-				$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName'][$x]."";
+			 	$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName'][$x]."";
 				$connect->query($updateProductTable);
 
-				// add into order_item
-				//$orderItemSql = "INSERT INTO order_item (order_id, product_id, quantity, rate, total, order_item_status) 
-			//	VALUES ('$order_id', '".$_POST['productName'][$x]."', '".$_POST['quantity'][$x]."', '".$_POST['rateValue'][$x]."', '".$_POST['totalValue'][$x]."', 1)";
-					$orderItemSql = "INSERT INTO  order_item_sucursale (order_id, product_id, quantity, order_item_status) 
+			  $orderItemSql = "INSERT INTO  order_item_sucursale (order_id, product_id, quantity, order_item_status) 
 					VALUES ('$order_id', '".$_POST['productName'][$x]."', '".$_POST['quantity'][$x]."',  1)";
 
 					$connect->query($orderItemSql);		
 
-					 $productSucursale = "INSERT INTO  product ( product_id,brand_id, quantity, status, fecha_salida) 
+				 	 $productSucursale = "INSERT INTO  product ( product_id,brand_id, quantity, status, fecha_salida) 
 					VALUES ('".$_POST['productName'][$x]."','$brandSurcursale', '".$_POST['quantity'][$x]."',  1,'$orderDate')";
 
 				$connect->query($productSucursale);		
@@ -63,6 +58,7 @@ if($_POST) {
 	$connect->close();
 
 	echo json_encode($valid);
+	
  
 } // /if $_POST
 // echo json_encode($valid);

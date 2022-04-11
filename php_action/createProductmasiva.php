@@ -7,14 +7,13 @@ $valid['success'] = array('success' => false, 'messages' => array());
 if (isset($_POST['enviar']))
 {
 		 
-			$brandName = $_POST['brandName'];
+		 	$brandName = $_POST['brandName'];
 		 
-			$filename=$_FILES["file"]["name"];
+	 	$filename=$_FILES["file"]["name"];
 			$info = new SplFileInfo($filename);
 			$extension = pathinfo($info->getFilename(), PATHINFO_EXTENSION);
-			echo "extension".$extension;
-
-			if($extension == 'csv')
+ 
+		 	if($extension == 'csv')
 			{
 				
 				$filename = $_FILES['file']['tmp_name'];
@@ -23,8 +22,9 @@ if (isset($_POST['enviar']))
 				$i=0;
 			while( ($data = fgetcsv($handle, 1000, ",") ) !== FALSE )
 				{
+			 
 				 if($i>0){
-				  $sql = "INSERT INTO product_coorporation (brand_id, status,active,fecha_ingreso, product_name, quantity, rate, sku, modelo,ubicacion) 
+			 	   $sql = "INSERT INTO product_coorporation (brand_id, status,active,fecha_ingreso, product_name, quantity, rate, sku, modelo,ubicacion) 
 					VALUES ('$brandName', 1, 1,
 							'$data[0]', 
 							'$data[1]',
@@ -35,10 +35,11 @@ if (isset($_POST['enviar']))
 							'$data[6]'
 							)";
 				$flag = $connect->query($sql);
-			 }
+			 } 
+		 
 			$i++;
 							
-			}
+			} 
 			if($flag === TRUE) {
 				$valid['success'] = true;
 				$valid['messages'] = "Carga exitosamente";	
@@ -50,5 +51,6 @@ if (isset($_POST['enviar']))
 
 				fclose($handle);
 			}
-			echo json_encode($valid);
+			//header('Location: ../product.php');
+		//	echo json_encode($valid);
 } 

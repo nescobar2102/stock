@@ -348,8 +348,12 @@ $(document).ready(function() {
 
 // print order function
 function printOrder(orderId = null) {
-	if(orderId) {		
-			
+	if(orderId) {	
+		var url = 'php_action/printOrderSucursale.php?orderId='+orderId;
+		var win = window.open(url, '_blank');
+        // Cambiar el foco al nuevo tab (punto opcional)
+        win.focus();	
+			/*
 		$.ajax({
 			url: 'php_action/printOrderSucursale.php',
 			type: 'post',
@@ -369,7 +373,7 @@ function printOrder(orderId = null) {
       mywindow.close();
 				
 			}// /success function
-		}); // /ajax function to fetch the printable order
+		}); // /ajax function to fetch the printable order*/
 	} // /if orderId
 } // /print order function
 
