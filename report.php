@@ -24,8 +24,14 @@
 				  </div>
 				  <div class="form-group">
 				    <div class="col-sm-offset-2 col-sm-10">
-				      <button type="submit" class="btn btn-success" id="generateReportBtn"> <i class="glyphicon glyphicon-ok-sign"></i> Generar Reporte</button>
-					  <td><a href="php_action/getOrderReportExcel.php">DESCARGAR EXCEL</a></td>
+				      <!--button type="submit" class="btn btn-success" id="generateReportBtn"> <i class="glyphicon glyphicon-ok-sign"></i> Generar Reporte</button-->
+					  <td><a class="btn btn-primary"  href="php_action/getOrderReportExcel.php">REPORTE ORDEN SALIDA ALMACEN PRINCIPAL</a></td>
+					  <br> <br>
+					  <td><a class="btn btn-primary"  href="php_action/getOrderReportExcelC.php">REPORTE ORDEN SALIDA A CLIENTES</a></td>
+					  <br> <br>
+					  <td><a class="btn btn-success"  href="php_action/getOrderReportExcelPrin.php">REPORTE INVENTARIO PRINCIPAL</a></td>
+					  <br>  <br>
+					  <td><a class="btn btn-success"  href="php_action/getOrderReportExcelSucu.php">REPORTE INVENTARIO SUCURSALES</a></td>
 				    </div>
 				  </div>
 				 
