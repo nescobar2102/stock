@@ -2,12 +2,10 @@
 
 require_once 'core.php';
  
-	$sql = "SELECT product.product_id,product_coorporation.product_name,product.quantity,product_coorporation.modelo, 
-	product_coorporation.sku,product_coorporation.ubicacion,fecha_salida,brands.brand_name 
-	FROM `product` 
-	inner join brands on product.brand_id= brands.brand_id 
-	inner join product_coorporation on product_coorporation.brand_id= brands.brand_id
-	and  product_coorporation.product_id= product.product_id";
+	$sql = "SELECT product.product_id,product_coorporation.product_name,product.quantity,product_coorporation.modelo,
+	 product_coorporation.sku,product_coorporation.ubicacion,fecha_salida,brands.brand_name FROM `product`
+	 inner join brands on product.brand_id= brands.brand_id
+	  inner join product_coorporation on product_coorporation.product_id= product.product_id";
 	$query = $connect->query($sql);
  
 
