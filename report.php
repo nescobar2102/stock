@@ -32,6 +32,8 @@
 					  <td><a class="btn btn-success"  href="php_action/getOrderReportExcelPrin.php">REPORTE INVENTARIO PRINCIPAL</a></td>
 					  <br>  <br>
 					  <td><a class="btn btn-success"  href="php_action/getOrderReportExcelSucu.php">REPORTE INVENTARIO SUCURSALES</a></td>
+					  <br>  <br>
+					  <td><a class="btn btn-success"  href="php_action/getOrderReportExcelCarga.php">REPORTE CARGA MASIVA</a></td>
 				    </div>
 				  </div>
 				 
