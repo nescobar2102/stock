@@ -31,7 +31,7 @@ if (isset($_POST['enviar']))
 								$row = $result->fetch_array();
 								$cantidad_new =	$row[0] + $data[2];
 									
-								$sql_update = "UPDATE product_coorporation SET quantity = $cantidad_new  WHERE sku = {$data[4]}";
+								$sql_update = "UPDATE product_coorporation SET quantity = $cantidad_new, fecha_ingreso = '$data[0]' WHERE sku = {$data[4]}";
 								$flag =$connect->query($sql_update); 
 
 							}else{   
