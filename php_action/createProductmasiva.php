@@ -23,20 +23,38 @@ if (isset($_POST['enviar']))
 			while( ($data = fgetcsv($handle, 1000, ",") ) !== FALSE )
 				{
 			 
-				 if($i>0){
-			 	   $sql = "INSERT INTO product_coorporation (brand_id, status,active,fecha_ingreso, product_name, quantity, rate, sku, modelo,ubicacion) 
-					VALUES ('$brandName', 1, 1,
-							'$data[0]', 
-							'$data[1]',
-							'$data[2]',
-							'$data[3]',
-							'$data[4]',
-							'$data[5]',
-							'$data[6]'
-							)";
-				$flag = $connect->query($sql);
-			 } 
-		 
+			//	 if($i>0){
+					$sql = "SELECT quantity FROM `product_coorporation` where sku = $data[4]";
+							$result = $connect->query($sql);
+
+							if($result->num_rows > 0) {  
+								$row = $result->fetch_array();
+								$cantidad_new =	$row[0] + $data[2];
+									
+								$sql_update = "UPDATE product_coorporation SET quantity = $cantidad_new  WHERE sku = {$data[4]}";
+								$flag =$connect->query($sql_update); 
+
+							}else{   
+							$sql = "INSERT INTO product_coorporation (brand_id, status,active,fecha_ingreso, product_name, quantity, rate, sku, modelo,ubicacion) 
+								VALUES ('$brandName', 1, 1,
+										'$data[0]', 
+										'$data[1]',
+										'$data[2]',
+										'$data[3]',
+										'$data[4]',
+										'$data[5]',
+										'$data[6]'
+										)";
+							$flag = $connect->query($sql);
+
+
+					} 
+			// } 
+			//registro de carga masiva
+			$sql_car = "INSERT INTO carga_productos (sku, fecha_carga,stock,brand_id) 
+				VALUES ('$data[4]','$data[0]','$data[2]','$brandName'	)";
+				$connect->query($sql_car);
+			
 			$i++;
 							
 			} 
