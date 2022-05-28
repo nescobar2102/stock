@@ -9,8 +9,7 @@ $result = $connect->query($sql);
 $output = array('data' => array());
 
 if($result->num_rows > 0) { 
-
- // $row = $result->fetch_array();
+ 
  $activeBrands = ""; 
 
  while($row = $result->fetch_array()) {
@@ -30,6 +29,7 @@ if($result->num_rows > 0) {
 	    Acción <span class="caret"></span>
 	  </button>
 	  <ul class="dropdown-menu">
+	  <li><a type="button" onclick="seeProductosMaestros('.$brandId.')"> <i class="glyphicon glyphicon-edit"></i> Productos</a></li> 
 	    <li><a type="button" data-toggle="modal" data-target="#editBrandModel" onclick="editBrands('.$brandId.')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
 	    <li><a type="button" data-toggle="modal" data-target="#removeMemberModal" onclick="removeBrands('.$brandId.')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>       
 	  </ul>

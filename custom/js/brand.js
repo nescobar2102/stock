@@ -269,3 +269,8 @@ function removeBrands(brandId = null) {
 		alert('error!! Refresh the page again');
 	}
 } // /remove brands function
+
+ 
+function seeProductosMaestros(brandId = null){
+	window.location.href = "product_maestro.php?id="+brandId;
+}
