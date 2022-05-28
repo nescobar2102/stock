@@ -12,7 +12,7 @@ if($_POST) {
   $clientName 					= $_POST['clientName'];
   //si inserta
 
-  echo $sql = "INSERT INTO orders (order_date, client_name, brandSurcursale_id,  client_contact, order_status) 
+  $sql = "INSERT INTO orders (order_date, client_name, brandSurcursale_id,  client_contact, order_status) 
   		  		VALUES ('$orderDate', '$clientName',  '$brandSurcursale', '$clientContact', 1)";
  
 	 
@@ -56,6 +56,8 @@ if($_POST) {
 	$connect->close();
 
 	echo json_encode($valid);
+	sleep(2);
+	header('Location: /ordersSucursale.php?o=add');
  
 } // /if $_POST
 // echo json_encode($valid);

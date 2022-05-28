@@ -58,7 +58,8 @@ die;
 	$connect->close();
 
 	echo json_encode($valid);
-	
+	sleep(10);
+	header('Location: ../orders.php?o=add'); 
  
 } // /if $_POST
 // echo json_encode($valid);

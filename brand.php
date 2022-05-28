@@ -1,6 +1,7 @@
 <?php require_once 'includes/header.php'; ?>
 <?php include('modal/brandModal.php');?>
-
+<?php require_once 'modal/productModalAlmacen.php'; ?>
+<?php require_once 'modal/productModalAlmacenMasiva.php'; ?>
 <div class="row">
 	<div class="col-md-12">
 
@@ -18,7 +19,9 @@
 				<div class="remove-messages"></div>
 
 				<div class="div-action pull pull-right" style="padding-bottom:20px;">
-					<button class="btn btn-default button1" data-toggle="modal" data-target="#addBrandModel"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar Almacén </button>
+				<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtn" data-target="#addProductModal"> <i class="glyphicon glyphicon-plus-sign"></i> IM de Producto </button>
+				 <button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtnMasiva" data-target="#addProductModalAlmacenMasiva"> <i class="glyphicon glyphicon-plus-sign"></i> CM Maestro de Productos </button>
+				 <button class="btn btn-default button1" data-toggle="modal" data-target="#addBrandModel"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar Almacén </button>
 				</div> <!-- /div-action -->				
 				
 				<table class="table" id="manageBrandTable">
@@ -38,12 +41,8 @@
 	</div> <!-- /col-md-12 -->
 </div> <!-- /row -->
 
-
-
-
-
-
-
+ 
 <script src="custom/js/brand.js"></script>
+<script src="custom/js/product_maestro.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>
