@@ -34,8 +34,7 @@ if($result->num_rows > 0) {
 	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	    Acción <span class="caret"></span>
 	  </button>
-	  <ul class="dropdown-menu">
-	    <li><a type="button" data-toggle="modal" id="editProductModalBtn" data-target="#editProductModal" onclick="editProduct('.$productId.')"> <i class="glyphicon glyphicon-edit"></i> Editar</a></li>
+	  <ul class="dropdown-menu"> 
 	    <li><a type="button" data-toggle="modal" data-target="#removeProductModal" id="removeProductModalBtn" onclick="removeProduct('.$productId.')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>       
 	  </ul>
 	</div>';
@@ -45,21 +44,16 @@ if($result->num_rows > 0) {
 	$modelo = $row[8]; 
 
  	$output['data'][] = array( 		 	 
- 		$row[1],  
-		 $row[3],  
- 		$brand, 
-		 //sku
-		$sku, 
-		 //modelo
-		$modelo,
- 		// active
- 		$active,
- 		// button
+ 		$row[1],   
+ 		$brand,  
+		$sku,  
+		$modelo, 
+ 		$active, 
  		$button 		
  		); 	
  } // /while 
 
-}// if num_rows
+} 
 
 $connect->close();
 

@@ -91,7 +91,7 @@ if($_GET['o'] == 'add') {
 				</div> <!--/form-group-->
 			  <div class="form-group">
 				  
-			    <label for="clientName" class="col-sm-2 control-label">Sucursales</label>
+			    <label for="clientName" class="col-sm-2 control-label">Almacén</label>
 			    <div class="col-sm-10" id="sucursales">
 				<!--select class="form-control" name="brandSurcursale" id="brandSurcursale" >
 							<option value="">-- Selecciona --</option>

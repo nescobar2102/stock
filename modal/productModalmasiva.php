@@ -11,12 +11,12 @@
 	     <div id="add-product-messages"></div>
 		 <form enctype="multipart/form-data" method="post" action="php_action/createProductmasiva.php">
 			 <div class="form-group">
-	        	<label for="brandName" class="col-sm-3 control-label">Coorporacion: </label>	         
+	        	<label for="brandName" class="col-sm-3 control-label">Almacén: </label>	         
 				    <div class="col-sm-8">
 				      <select class="form-control" id="brandName" name="brandName">
 				      	<option value="">-- Selecciona --</option>
 				      	<?php 
-				      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands_1 WHERE brand_status = 1 AND brand_active = 1";
+				      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands  WHERE brand_status = 1 AND brand_active = 1";
 								$result = $connect->query($sql);
 
 								while($row = $result->fetch_array()) {
@@ -30,7 +30,7 @@
 							<br> 
 							<hr> 
 			<div class="form-group">
-				<label for="brandName" class="col-sm-3 control-label">CSV File: </label>
+				<label for="brandName" class="col-sm-3 control-label">Excel Archivo: </label>
 				<div class="col-sm-8">	
 					<input  class="form-control" type="file" name="file" id="file">
 					</div> 

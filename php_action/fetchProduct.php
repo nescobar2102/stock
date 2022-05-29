@@ -3,14 +3,14 @@
 
 
 require_once 'core.php';
+$almacen = $_GET['id'];
 
-$sql = "SELECT product.product_id, product.product_name, product.product_image,
-		product.brand_id, product.quantity, product.fecha_ingreso, product.active, product.status,
-		brands.brand_name,product.sku,product.ubicacion,product.modelo
+   $sql = "SELECT product.product_id, product.product_name,product.sku, brands.brand_name,
+ 		product.fecha_ingreso,product.quantity, product.active, product.brand_id, product.status, product.ubicacion,product.modelo 
 		FROM product_coorporation as product
-			INNER JOIN brands_1 as brands 
+			INNER JOIN brands as brands 
 			ON product.brand_id = brands.brand_id
-			WHERE product.status = 1";
+			WHERE product.status = 1 and brands.brand_id=$almacen";
 
 $result = $connect->query($sql);
 
@@ -23,7 +23,7 @@ if($result->num_rows > 0) {
  while($row = $result->fetch_array()) {
  	$productId = $row[0];
  	// active 
- 	if($row[7] == 1) {
+ 	if($row[6] == 1) {
  		// activate member
  		$active = "<label class='label label-success'>Disponible</label>";
  	} else {
@@ -41,26 +41,14 @@ if($result->num_rows > 0) {
 	    <li><a type="button" data-toggle="modal" data-target="#removeProductModal" id="removeProductModalBtn" onclick="removeProduct('.$productId.')"> <i class="glyphicon glyphicon-trash"></i> Eliminar</a></li>       
 	  </ul>
 	</div>';
- 
-	$brand = $row[8]; 
-	$sku = $row[9];
-	$ubicacion = $row[10];
-	$modelo = $row[11]; 
 
+						 
  	$output['data'][] = array( 		 	 
  		$row[1], 
- 		// rate
- 		$row[5],
- 		// quantity 
- 		$row[4], 		 	
- 		// brand
- 		$brand, 
-		 //sku
-		$sku,
-		//ubicacion
-		$ubicacion,
-		 //modelo
-		$modelo,
+		 $row[2], 
+		 $row[3], 
+		 $row[4], 
+		 $row[5],  
  		// active
  		$active,
  		// button

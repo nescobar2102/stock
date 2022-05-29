@@ -4,10 +4,10 @@ $(document).ready(function() {
 	// top nav bar 
 	$('#navProduct').addClass('active');
 	// manage product data table
-	manageProductTable = $('#manageProductTable').DataTable({
+	/*manageProductTable = $('#manageProductTable').DataTable({
 		'ajax': 'php_action/fetchProduct.php',
 		'order': []
-	});
+	});*/
 
 	// add product modal btn clicked
 	$("#addProductModalBtn").unbind('click').bind('click', function() {
@@ -70,17 +70,7 @@ $(document).ready(function() {
 				// success out for form 
 				$("#brandName").closest('.form-group').addClass('has-success');	  	
 			}	// /else
-/*
-			if(categoryName == "") {
-				$("#categoryName").after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#categoryName').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#categoryName").find('.text-danger').remove();
-				// success out for form 
-				$("#categoryName").closest('.form-group').addClass('has-success');	  	
-			}	// /else*/
-
+ 
 			if(productStatus == "") {
 				$("#productStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
 				$('#productStatus').closest('.form-group').addClass('has-error');
@@ -150,9 +140,21 @@ $(document).ready(function() {
 	}); // /add product modal btn clicked
 	
 
-	// remove product 	
+	// listar productos por almacen 
+ 
 
 }); // document.ready fucntion
+
+
+function listarProductos(val) { 
+ $('#manageProductTable').DataTable({
+		'ajax': 'php_action/fetchProduct.php?id='+val.value,
+		'order': [],
+		destroy: true,
+	});
+ 
+	$('#manageProductTable').DataTable().ajax.reload();
+}
 
 function editProduct(productId = null) {
 

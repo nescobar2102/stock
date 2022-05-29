@@ -89,22 +89,22 @@ if (isset($_POST['enviar']))
 				$excelSheet = $spreadSheet->getActiveSheet();
 				$spreadSheetAry = $excelSheet->toArray();
 				$sheetCount = count($spreadSheetAry);
-
-				for ($i = 1; $i <= $sheetCount; $i ++) {
+				$precio = 0;
+				for ($i = 1; $i <  $sheetCount; $i ++) {
 
 					$producto = "";
-					if (isset($spreadSheetAry[$i][0])) {
+					if (isset($spreadSheetAry[$i][1])) {
 							$sku = mysqli_real_escape_string($connect, $spreadSheetAry[$i][1]);
 					}
 					$descripcion = "";
-					if (isset($spreadSheetAry[$i][1])) {
+					if (isset($spreadSheetAry[$i][2])) {
 							$descripcion = mysqli_real_escape_string($connect, $spreadSheetAry[$i][2]);
 					}
 					$unidad_medida = "";
-					if (isset($spreadSheetAry[$i][2])) {
+					if (isset($spreadSheetAry[$i][3]) ) {
 						$unidad_medida = mysqli_real_escape_string($connect, $spreadSheetAry[$i][3]);
 					}
-						if (! empty($sku) || ! empty($descripcion)  || ! empty($unidad_medida)) {
+						if (! empty($sku) || !empty($descripcion)  ) {
 							/*$sql = "SELECT quantity FROM `product_coorporation` where sku = $sku and brand_id = $brandName";
 							$result = $connect->query($sql);
 
@@ -116,19 +116,15 @@ if (isset($_POST['enviar']))
 								$flag =$connect->query($sql_update); 
 
 							}else{ */  
-							$sql = "INSERT INTO product_coorporation (brand_id, status,active,fecha_ingreso, product_name, sku, modelo) 
+					 	$sql = "INSERT INTO product_coorporation (brand_id, status,active,fecha_ingreso, product_name, sku, modelo,rate) 
 								VALUES ('$brandName', 1, 1,
 										 CURDATE() , 
 										'$descripcion', 
 										'$sku',
-										'$unidad_medida' 
+										'$unidad_medida',
+										'$precio' 
 										)";
-							$flag = $connect->query($sql); 
- 
-						
-						$i++;
-
-					//	} 
+							$flag = $connect->query($sql);    
 
 					}
 
@@ -138,7 +134,7 @@ if (isset($_POST['enviar']))
 			$type = "danger";
 			$message = "Tipo de archivo invalido. Cargar archivo de Excel.";
 			}
-		  header('Location: ../product.php');
+		  header('Location: ../brand.php');
 		//	echo json_encode($valid);
 	} 
 

@@ -19,7 +19,7 @@ $id = $_GET['id'];
 				<div class="page-heading"> <i class="glyphicon glyphicon-edit"></i> Produtos Maestros</div>
 			</div> <!-- /panel-heading -->
 			<div class="panel-body">
-			<input id="brand_id_ver" type="text" value="<?=$id;?>">
+			<input id="brand_id_ver" type="hidden" value="<?=$id;?>">
 				<div class="remove-messages"></div>
 
 				<!--div class="div-action pull pull-right" style="padding-bottom:20px;">
@@ -30,8 +30,7 @@ $id = $_GET['id'];
 				<table class="table" id="manageProductTable">
 					<thead>
 						<tr> 						
-							<th>Nombre del producto</th>
-							<th>Fecha Ingreso</th>	 
+							<th>Nombre del producto</th> 
 							<th>Almacén</th>
 							<th>SKU</th> 
 							<th>Unidad Medida</th> 
