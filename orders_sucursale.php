@@ -266,6 +266,7 @@ if($_GET['o'] == 'add') {
 				<thead>
 					<tr>
 						<th>#</th>
+						<th>N Guía</th>
 						<th>Fecha</th>
 						<th>Cliente</th>
 						<th>Sucursal</th>

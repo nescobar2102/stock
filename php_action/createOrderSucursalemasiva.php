@@ -55,22 +55,31 @@ if (isset($_POST['enviar'])){
 						 $stock = mysqli_real_escape_string($connect, $spreadSheetAry[$i][5]);
 				} 
 
-					if (! empty($sku) &&!empty($stock) && !empty($clientName) ) {
+				if (! empty($sku) &&!empty($stock) && !empty($clientName) && !empty($guia)  ) {
 
-					 	$sql = "INSERT INTO orders (order_date, client_name, brandSurcursale_id,  client_contact, order_status) 
-						VALUES ('$fecha', '$clientName',  '$brandSurcursale', '$client_contact', 1)";
-							 
-					$order_id;
-					$orderStatus = false;
-					if($connect->query($sql) === true) {
-						$order_id = $connect->insert_id;
-						$valid['order_id'] = $order_id;	
-						$orderStatus = true;
-					}
- 
-				$orderItemStatus = false;
+			echo	$sql = "SELECT  order_id from orders where n_guia ='$guia' and brandSurcursale_id = $brandSurcursale";
+							
+				$result = $connect->query($sql);
+				$order_id; 	
+				if($result->num_rows == 0) {  
+					echo "no existe la guia".$guia;
+				 
+					$sql = "INSERT INTO orders (order_date, client_name, brandSurcursale_id,  client_contact, order_status,	n_guia) 
+					VALUES ('$fecha', '$clientName',  '$brandSurcursale', '$client_contact', 1,'$guia')"; 
 					
-			   $updateProductQuantitySql = "SELECT product.quantity,  product.product_id FROM product_coorporation as product 
+						if($connect->query($sql) === true) {
+							$order_id = $connect->insert_id;
+							$valid['order_id'] = $order_id;	 
+						}
+					} else {
+						$row = $result->fetch_array();  
+						$order_id = $row[0];
+						echo "si existe la guia".$guia." con el id order".$order_id;
+					 }
+				}
+				 
+					
+			    $updateProductQuantitySql = "SELECT product.quantity,  product.product_id FROM product_coorporation as product 
 					WHERE product.sku = '$sku' and brand_id='$brandSurcursale'";
 				$updateProductQuantityData = $connect->query($updateProductQuantitySql);				
 						
@@ -78,16 +87,18 @@ if (isset($_POST['enviar'])){
 							$updateQuantity = $updateProductQuantityResult[0] - $stock;	
 							$product_id  = $updateProductQuantityResult[1];			
 								// update product table
-							// 	$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
-								$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity."' WHERE sku =  '$sku'  and brand_id='$brandSurcursale'";
-								$connect->query($updateProductTable);
+								if($$updateQuantity>=0){
+								// 	$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
+									$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity."' WHERE sku =  '$sku'  and brand_id='$brandSurcursale'";
+									$connect->query($updateProductTable);
+					
+									// add into order_item
+									$orderItemSql = "INSERT INTO  order_item (order_id, product_id, quantity, order_item_status) 
+										VALUES ('$order_id', '".$product_id."', '$stock',  1)";
 				
-								// add into order_item
-						 	$orderItemSql = "INSERT INTO  order_item (order_id, product_id, quantity, order_item_status) 
-									VALUES ('$order_id', '".$product_id."', '$stock',  1)";
-				
-									$connect->query($orderItemSql);		
-								$orderItemStatus = true;
+									$connect->query($orderItemSql);
+									}	
+						 
 								
 						} // while	
 				 
@@ -98,22 +109,16 @@ if (isset($_POST['enviar'])){
 				 
 
 					}
-
-				}
+ 
  
 		}  else {
 			$type = "danger";
 			$message = "Tipo de archivo invalido. Cargar archivo de Excel.";
 	   } 
-	
-		$valid['success'] = true;
-		$valid['messages'] = "Agregado exitosamente";		
-		
-		$connect->close();
-
-		echo json_encode($valid);
+	 
+		$connect->close(); 
 		sleep(2);
-		header('Location: ../ordersSucursale.php?o=add');
+		header('Location: ../orders_sucursale.php?o=add');
  
 }  
 // echo json_encode($valid);

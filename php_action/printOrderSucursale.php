@@ -6,7 +6,7 @@ require_once 'core.php';
 $orderId = $_GET['orderId'];
 //$sql = "SELECT order_date, client_name, client_contact, sub_total, vat, total_amount, discount, grand_total, paid, due FROM orders WHERE order_id = $orderId";
 
-$sql = "SELECT order_date, brands.brand_name AS sucursal, client_contact,client_name 
+$sql = "SELECT order_date, brands.brand_name AS sucursal, client_contact,client_name ,n_guia
 FROM orders INNER JOIN brands ON brands.brand_id = orders.brandSurcursale_id
  WHERE order_id= $orderId";
 
@@ -17,7 +17,7 @@ $orderDate = $orderData[0];
 $clientName = $orderData[3];
 $clientContact = $orderData[2]; 
 $Sucursale = $orderData[1];
- 
+$n_guia = $orderData[4];
 
 
  $orderItemSql = "SELECT order_item.product_id, order_item.rate, order_item.quantity,
@@ -25,42 +25,67 @@ order_item.total, product_coorporation.product_name
 FROM order_item INNER JOIN product_coorporation ON order_item.product_id = product_coorporation.product_id 
 WHERE order_item.order_id=  $orderId";
 $orderItemResult = $connect->query($orderItemSql);
-
+$count =  $orderItemResult->num_rows ;
  $table = '
- <table border="1" cellspacing="0" cellpadding="20" width="100%">
+ <div >
+ <table border="1" cellspacing="5" cellpadding="5" width="30%">
 	<thead>
 		<tr >
 			<th colspan="5">
 
 			<center>
-				Fecha : '.$orderDate.'
-				<center>Sucursal : '.$Sucursale.'</center>
-				<center>Cliente : '.$clientName.'</center>			
-				Teléfono : '.$clientContact.'
+			<center>REMITENTE </center> 
+				NOMBRE : '.$Sucursale.'<br>
+				FECHA : '.$orderDate.'<br>
+				<center> 
+				Nº de Guía: : '.$n_guia.'</center>
+				<center>DIRECCION : '.$clientName.'</center> 
 			</center>		
 			</th>
 				
 		</tr>		
 	</thead>
 </table>
-<table border="0" width="100%;" cellpadding="5" style="border:1px solid black;border-top-style:1px solid black;border-bottom-style:1px solid black;">
+<table border="1" cellspacing="05" cellpadding="5" width="30%">
+<thead>
+	<tr>
+		<th colspan="5"> 
+		<center>
+		<center>DESTINATARIO </center> 
+			NOMBRE : '.$clientName.' <br>
+			TLEFONO : '.$clientContact.'<br>
+			<center>  
+			<center>DIRECCION : '.$clientName.'</center> 
+		</center>		
+		</th> 
+	</tr>		
+</thead>
+</table>
+<table border="1" cellspacing="0" cellpadding="5" width="30%">
+<thead>
+	<tr>
+		<th colspan="5">  
+		<center>NRO.PIEZAS: '.$count.' | PESO:0 KG  </center>  
+		</th> 
+	</tr>		
+	
+</thead>
+</table>
+<table border="1" width="30%;" cellpadding="5" >
 
 	<tbody>
-		<tr>
-			<th>#</th>
+		<tr> 
 			<th>Producto</th>		
-			<th>Cantidad</th>
-		 
+			<th>Cantidad</th> 
 		</tr>';
 
 		$x = 1;
 		while($row = $orderItemResult->fetch_array()) {			
 						
 			$table .= '<tr>
-				<th>'.$x.'</th>
+			 
 				<th>'.$row[4].'</th>				
-				<th>'.$row[2].'</th>
-				<th>0</th>
+				<th>'.$row[2].'</th> 
 			</tr>
 			';
 		$x++;
@@ -69,7 +94,7 @@ $orderItemResult = $connect->query($orderItemSql);
 		$table .= ' 
 	</tbody>
 </table>
-
+<br>
 <input type="button" name="imprimir" value="Imprimir" onclick="window.print();"> '
 ;
  
