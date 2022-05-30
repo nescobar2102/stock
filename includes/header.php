@@ -73,7 +73,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="glyphicon glyphicon-shopping-cart"></i> Ordenes <span class="caret"></span></a>
           <ul class="dropdown-menu">            
             <li id="topNavAddOrder"><a href="orders.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Agregar Ordenes</a></li>   
-            <li id="topNavAddOrder"><a href="orders_sucursale.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Agregar Ordenes Sucursales</a></li>           
+            <li id="topNavAddOrder"><a href="orders_sucursale.php?o=add"> <i class="glyphicon glyphicon-plus"></i> Agregar Ordenes Almacén</a></li>           
             <li id="topNavManageOrder"><a href="orders.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Gestionar Ordenes Almacén</a></li>       
             <li id="topNavManageOrder"><a href="orders_sucursale.php?o=manord"> <i class="glyphicon glyphicon-edit"></i> Gestionar Ordenes Sucursales</a></li>         
           </ul>

@@ -1,6 +1,7 @@
 <?php 
 require_once 'php_action/db_connect.php'; 
 require_once 'includes/header.php'; 
+require_once 'modal/productModalmasivaOrder.php';
 
 if($_GET['o'] == 'add') { 
 // add order
@@ -19,7 +20,7 @@ if($_GET['o'] == 'add') {
   <li>Ordenes</li>
   <li class="active">
   	<?php if($_GET['o'] == 'add') { ?>
-  		Agregar Orden salida sucursal
+  		Agregar Orden salida Almacén
 		<?php } else if($_GET['o'] == 'manord') { ?>
 			Listado de ordenes salida sucursal
 		<?php } // /else manage order ?>
@@ -30,7 +31,7 @@ if($_GET['o'] == 'add') {
 <h4>
 	<i class='glyphicon glyphicon-circle-arrow-right'></i>
 	<?php if($_GET['o'] == 'add') {
-		echo "Agregar Salida surcursal";
+		echo "Agregar Salida Almacén";
 	} else if($_GET['o'] == 'manord') { 
 		echo "Listado de ordenes";
 	} else if($_GET['o'] == 'editOrd') { 
@@ -45,15 +46,24 @@ if($_GET['o'] == 'add') {
 	<div class="panel-heading">
 
 		<?php if($_GET['o'] == 'add') { ?>
-  		<i class="glyphicon glyphicon-plus-sign"></i>	Agregar Salida sucursal
+  		<i class="glyphicon glyphicon-plus-sign"></i>	Agregar Salida Almacén
 		<?php } else if($_GET['o'] == 'manord') { ?>
 			<i class="glyphicon glyphicon-edit"></i> Listado de ordenes
 		<?php } else if($_GET['o'] == 'editOrd') { ?>
 			<i class="glyphicon glyphicon-edit"></i> Editar orden
 		<?php } ?>
+		
 
 	</div> <!--/panel-->	
 	<div class="panel-body">
+		
+	<div class="remove-messages"></div>
+
+<div class="div-action pull pull-right" style="padding-bottom:20px;">
+	 
+	<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtnMasiva" data-target="#addProductModalMasivaOrder"> <i class="glyphicon glyphicon-plus-sign"></i> Carga masiva ordenes salidas </button>
+</div> <!-- /div-action -->			
+<br><br><br>
 			
 		<?php if($_GET['o'] == 'add') { 
 			// add order

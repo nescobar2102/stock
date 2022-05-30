@@ -12,7 +12,7 @@ if($_POST) {
   $clientContact 				= $_POST['clientContact'];
 
   //si inserta
-  echo $sql = "INSERT INTO orders_sucursale (order_date, brandCorporation, brandSurcursale,  client_contact, order_status) 
+   $sql = "INSERT INTO orders_sucursale (order_date, brandCorporation, brandSurcursale,  client_contact, order_status) 
   		  		VALUES ('$orderDate', '$brandCorporation', '$brandSurcursale', '$clientContact', 1)";
 	 
 	$order_id;
@@ -26,22 +26,22 @@ if($_POST) {
 	$orderItemStatus = false;
 
 	for($x = 0; $x < count($_POST['productName']); $x++) {			 
-	echo	$updateProductQuantitySql = "SELECT product.quantity FROM product_coorporation as product WHERE product.product_id = ".$_POST['productName'][$x]."";
+		$updateProductQuantitySql = "SELECT product.quantity FROM product_coorporation as product WHERE product.product_id = ".$_POST['productName'][$x]."";
 		$updateProductQuantityData = $connect->query($updateProductQuantitySql);
 		
 		
 		while ($updateProductQuantityResult = $updateProductQuantityData->fetch_row()) {
 			$updateQuantity[$x] = $updateProductQuantityResult[0] - $_POST['quantity'][$x];							
 				// update product table
-			echo 	$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName'][$x]."";
+			 	$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName'][$x]."";
 				$connect->query($updateProductTable);
 
-		echo 	  $orderItemSql = "INSERT INTO  order_item_sucursale (order_id, product_id, quantity, order_item_status) 
+		 	  $orderItemSql = "INSERT INTO  order_item_sucursale (order_id, product_id, quantity, order_item_status) 
 					VALUES ('$order_id', '".$_POST['productName'][$x]."', '".$_POST['quantity'][$x]."',  1)";
 
 					$connect->query($orderItemSql);		
 
-			echo	 	 $productSucursale = "INSERT INTO  product ( product_id,brand_id, quantity, status, fecha_salida) 
+				 	 $productSucursale = "INSERT INTO  product ( product_id,brand_id, quantity, status, fecha_salida) 
 					VALUES ('".$_POST['productName'][$x]."','$brandSurcursale', '".$_POST['quantity'][$x]."',  1,'$orderDate')";
 
 				$connect->query($productSucursale);		
@@ -51,7 +51,7 @@ if($_POST) {
 				}		
 		} // while	
 	} // /for quantity
-die;
+
 	$valid['success'] = true;
 	$valid['messages'] = "Agregado exitosamente";		
 	

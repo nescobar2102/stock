@@ -27,14 +27,16 @@ if($_POST) {
 	$orderItemStatus = false;
 
 	for($x = 0; $x < count($_POST['productName1']); $x++) {			 
-		$updateProductQuantitySql = "SELECT product.quantity FROM product as product WHERE product.product_id = ".$_POST['productName1'][$x]."";
+		//$updateProductQuantitySql = "SELECT product.quantity FROM product as product WHERE product.product_id = ".$_POST['productName1'][$x]."";
+		$updateProductQuantitySql = "SELECT product.quantity FROM product_coorporation as product WHERE product.product_id = ".$_POST['productName1'][$x]."";
 		$updateProductQuantityData = $connect->query($updateProductQuantitySql);
 		
 		
 		while ($updateProductQuantityResult = $updateProductQuantityData->fetch_row()) {
 			$updateQuantity[$x] = $updateProductQuantityResult[0] - $_POST['quantity'][$x];							
 				// update product table
-			 	$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
+			// 	$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
+				 $updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
 				$connect->query($updateProductTable);
 
 				// add into order_item
@@ -57,7 +59,7 @@ if($_POST) {
 
 	echo json_encode($valid);
 	sleep(2);
-	header('Location: /ordersSucursale.php?o=add');
+	header('Location: ../ordersSucursale.php?o=add');
  
 } // /if $_POST
 // echo json_encode($valid);
