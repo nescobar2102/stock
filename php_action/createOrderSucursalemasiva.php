@@ -19,7 +19,7 @@ if (isset($_POST['enviar'])){
 		'text/xlsx',
 		'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 		];
-		if (in_array($_FILES["file"]["type"], $allowedFileType)) {
+	//	if (in_array($_FILES["file"]["type"], $allowedFileType)) {
 			$targetPath = 'subidas/' . $_FILES['file']['name'];
 			move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
 			 
@@ -57,12 +57,12 @@ if (isset($_POST['enviar'])){
 
 				if (! empty($sku) &&!empty($stock) && !empty($clientName) && !empty($guia)  ) {
 
-			echo	$sql = "SELECT  order_id from orders where n_guia ='$guia' and brandSurcursale_id = $brandSurcursale";
+			 	$sql = "SELECT  order_id from orders where n_guia ='$guia' and brandSurcursale_id = $brandSurcursale";
 							
 				$result = $connect->query($sql);
 				$order_id; 	
 				if($result->num_rows == 0) {  
-					echo "no existe la guia".$guia;
+				  
 				 
 					$sql = "INSERT INTO orders (order_date, client_name, brandSurcursale_id,  client_contact, order_status,	n_guia) 
 					VALUES ('$fecha', '$clientName',  '$brandSurcursale', '$client_contact', 1,'$guia')"; 
@@ -111,10 +111,10 @@ if (isset($_POST['enviar'])){
 					}
  
  
-		}  else {
+	/*	}  else {
 			$type = "danger";
 			$message = "Tipo de archivo invalido. Cargar archivo de Excel.";
-	   } 
+	   } */
 	 
 		$connect->close(); 
 		sleep(2);

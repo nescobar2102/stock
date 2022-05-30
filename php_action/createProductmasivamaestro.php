@@ -78,7 +78,7 @@ if (isset($_POST['enviar']))
 			'text/xlsx',
 			'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 			];
-			if (in_array($_FILES["file"]["type"], $allowedFileType)) {
+			//if (in_array($_FILES["file"]["type"], $allowedFileType)) {
 				$targetPath = 'subidas/' . $_FILES['file']['name'];
 				move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
 				
@@ -130,10 +130,10 @@ if (isset($_POST['enviar']))
 
 				}
  
-		}  else {
+		/*}  else {
 			$type = "danger";
 			$message = "Tipo de archivo invalido. Cargar archivo de Excel.";
-			}
+			}*/
 		  header('Location: ../brand.php');
 		//	echo json_encode($valid);
 	} 
