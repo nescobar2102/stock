@@ -88,7 +88,7 @@ if($_GET['o'] == 'add') {
 			  </div> <!--/form-group-->
 			  <div class="form-group">
 				  
-				  <label for="clientName" class="col-sm-2 control-label">Sucursales</label>
+				  <label for="clientName" class="col-sm-2 control-label">Almacén</label>
 				  <div class="col-sm-10" id="sucursales">
 				  <select class="form-control" name="brandSurcursale" id="brandSurcursale" >
 							  <option value="">-- Selecciona --</option>
@@ -170,85 +170,10 @@ if($_GET['o'] == 'add') {
 			  		?>
 			  	</tbody>			  	
 			  </table>
-
-			  <!--div class="col-md-6">
-			  	<div class="form-group">
-				    <label for="subTotal" class="col-sm-3 control-label">Sub total</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="subTotal" name="subTotal" disabled="true" />
-				      <input type="hidden" class="form-control" id="subTotalValue" name="subTotalValue" />
-				    </div>
-				  </div>  		  
-				  <div class="form-group">
-				    <label for="vat" class="col-sm-3 control-label">IVA 13%</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="vat" name="vat" disabled="true" />
-				      <input type="hidden" class="form-control" id="vatValue" name="vatValue" />
-				    </div>
-				  </div> 	  
-				  <div class="form-group">
-				    <label for="totalAmount" class="col-sm-3 control-label">Total neto</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="totalAmount" name="totalAmount" disabled="true"/>
-				      <input type="hidden" class="form-control" id="totalAmountValue" name="totalAmountValue" />
-				    </div>
-				  </div> 	  
-				  <div class="form-group">
-				    <label for="discount" class="col-sm-3 control-label">Descuento</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="discount" name="discount" onkeyup="discountFunc()" autocomplete="off" />
-				    </div>
-				  </div> 
-				  <div class="form-group">
-				    <label for="grandTotal" class="col-sm-3 control-label">Total</label>
-				    <div class="col-sm-9">
-				      <input type="text" class="form-control" id="grandTotal" name="grandTotal" disabled="true" />
-				      <input type="hidden" class="form-control" id="grandTotalValue" name="grandTotalValue" />
-				    </div>
-				  </div> 		  
-			  </div-->  
-
-			  <!--div class="col-md-6">
-			  	<div class="form-group">
-				    <label for="paid" class="col-sm-4 control-label">Monto pagado</label>
-				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="paid" name="paid" autocomplete="off" onkeyup="paidAmount()" />
-				    </div>
-				  </div>  		  
-				  <div class="form-group">
-				    <label for="due" class="col-sm-4 control-label">Saldo</label>
-				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="due" name="due" disabled="true" />
-				      <input type="hidden" class="form-control" id="dueValue" name="dueValue" />
-				    </div>
-				  </div>  	
-				  <div class="form-group">
-				    <label for="clientContact" class="col-sm-4 control-label">Método de pago</label>
-				    <div class="col-sm-8">
-				      <select class="form-control" name="paymentType" id="paymentType">
-				      	<option value="">-- Selecciona --</option>
-				      	<option value="1">Cheque</option>
-				      	<option value="2">Efectivo</option>
-				      	<option value="3">Tarjeta de crédito</option>
-				      </select>
-				    </div>
-				  </div> 				  
-				  <div class="form-group">
-				    <label for="clientContact" class="col-sm-4 control-label">Estado</label>
-				    <div class="col-sm-8">
-				      <select class="form-control" name="paymentStatus" id="paymentStatus">
-				      	<option value="">-- Selecciona --</option>
-				      	<option value="1">Pago completo</option>
-				      	<option value="2">Pago por adelantado</option>
-				      	<option value="3">No pagado</option>
-				      </select>
-				    </div>
-				  </div>  						  
-			  </div--> 
-
+ 
 			  <div class="form-group submitButtonFooter">
 			    <div class="col-sm-offset-2 col-sm-10">
-			    <button type="button" class="btn btn-default" onclick="addRow()" id="addRowBtn" data-loading-text="Cargando..."> <i class="glyphicon glyphicon-plus-sign"></i> Añadir fila </button>
+			    <button type="button" class="btn btn-default" onclick="addRow()" id="addRowBtn" data-loading-text="Cargando..."> <i class="glyphicon glyphicon-plus-sign"></i> Añadir Producto </button>
 
 			      <button type="submit" id="createOrderBtn" data-loading-text="Cargando..." class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"></i> Guardar cambios</button>
 
@@ -330,14 +255,12 @@ if($_GET['o'] == 'add') {
 
 			  		$orderItemSql = "SELECT order_item.order_item_id, order_item.order_id, order_item.product_id, order_item.quantity, order_item.rate, order_item.total FROM order_item WHERE order_item.order_id = {$orderId}";
 						$orderItemResult = $connect->query($orderItemSql);
-						// $orderItemData = $orderItemResult->fetch_all();						
-						
-						// print_r($orderItemData);
+				 
 			  		$arrayNumber = 0;
-			  		// for($x = 1; $x <= count($orderItemData); $x++) {
+			   
 			  		$x = 1;
 			  		while($orderItemData = $orderItemResult->fetch_array()) { 
-			  			// print_r($orderItemData); ?>
+			  		  ?>
 			  			<tr id="row<?php echo $x; ?>" class="<?php echo $arrayNumber; ?>">			  				
 			  				<td style="margin-left:20px;">
 			  					<div class="form-group">
@@ -479,7 +402,7 @@ if($_GET['o'] == 'add') {
 
 			  <div class="form-group editButtonFooter">
 			    <div class="col-sm-offset-2 col-sm-10">
-			    <button type="button" class="btn btn-default" onclick="addRow()" id="addRowBtn" data-loading-text="cargando..."> <i class="glyphicon glyphicon-plus-sign"></i> Añadir fila </button>
+			    <button type="button" class="btn btn-default" onclick="addRow()" id="addRowBtn" data-loading-text="cargando..."> <i class="glyphicon glyphicon-plus-sign"></i> Añadir Producto </button>
 
 			    <input type="hidden" name="orderId" id="orderId" value="<?php echo $_GET['i']; ?>" />
 

@@ -140,20 +140,37 @@ $(document).ready(function() {
 	}); // /add product modal btn clicked
 	
 
-	// listar productos por almacen 
- 
+
 
 }); // document.ready fucntion
 
 
 function listarProductos(val) { 
- $('#manageProductTable').DataTable({
+	var table = $('#manageProductTable').DataTable({
 		'ajax': 'php_action/fetchProduct.php?id='+val.value,
 		'order': [],
 		destroy: true,
+		dom: 'Bfrtip',
+		'responsive': true,
+		buttons: [
+			'copy','csv','excel','pdf','print'
+		],
 	});
  
-	$('#manageProductTable').DataTable().ajax.reload();
+ 
+	table.ajax.reload();
+	//$('#manageProductTable').DataTable().ajax.reload();
+
+	 // Handle click on "Expand All" button
+	 $('#btn-show-all-children').on('click', function(){
+        // Expand row details
+        table.rows(':not(.parent)').nodes().to$().find('td:first-child').trigger('click');
+    });
+	  // Handle click on "Collapse All" button
+	  $('#btn-hide-all-children').on('click', function(){
+        // Collapse row details
+        table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
+    });
 }
 
 function editProduct(productId = null) {

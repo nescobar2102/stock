@@ -57,34 +57,7 @@ $(document).ready(function() {
 				$('#clientContact').closest('.form-group').addClass('has-success');
 			} // /else
 
-		/*	if(paid == "") {
-				$("#paid").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#paid').closest('.form-group').addClass('has-error');
-			} else {
-				$('#paid').closest('.form-group').addClass('has-success');
-			} // /else
-
-			if(discount == "") {
-				$("#discount").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#discount').closest('.form-group').addClass('has-error');
-			} else {
-				$('#discount').closest('.form-group').addClass('has-success');
-			} // /else
-
-			if(paymentType == "") {
-				$("#paymentType").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#paymentType').closest('.form-group').addClass('has-error');
-			} else {
-				$('#paymentType').closest('.form-group').addClass('has-success');
-			} // /else
-
-			if(paymentStatus == "") {
-				$("#paymentStatus").after('<p class="text-danger"> Este campo es obligatorio </p>');
-				$('#paymentStatus').closest('.form-group').addClass('has-error');
-			} else {
-				$('#paymentStatus').closest('.form-group').addClass('has-success');
-			} // /else*/
-
+ 
 
 			// array validation
 			var productName = document.getElementsByName('productName[]');				
@@ -131,7 +104,7 @@ $(document).ready(function() {
 			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
 				if(validateProduct == true && validateQuantity == true) {
 					// create order button
-					// $("#createOrderBtn").button('loading');
+					 $("#createOrderBtn").button('loading');
 
 					$.ajax({
 						url : form.attr('action'),
@@ -141,7 +114,7 @@ $(document).ready(function() {
 						success:function(response) {
 							console.log(response);
 							// reset button
-							$("#createOrderBtn").button('reset');
+							//$("#createOrderBtn").button('reset');
 							
 							$(".text-danger").remove();
 							$('.form-group').removeClass('has-error').removeClass('has-success');
@@ -150,12 +123,12 @@ $(document).ready(function() {
 								
 								// create order button
 								$(".success-messages").html('<div class="alert alert-success">'+
-	            	'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-	            	' <br /> <br /> <a type="button" onclick="printOrder('+response.order_id+')" class="btn btn-primary"> <i class="glyphicon glyphicon-print"></i> Imprimier </a>'+
-	            	'<a href="orders.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar nueva orden </a>'+
-	            	
-	   		       '</div>');
+								'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+								'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
+								' <br /> <br /> <a type="button" onclick="printOrder('+response.order_id+')" class="btn btn-primary"> <i class="glyphicon glyphicon-print"></i> Imprimier </a>'+
+								'<a href="orders.php?o=add" class="btn btn-default" style="margin-left:10px;"> <i class="glyphicon glyphicon-plus-sign"></i> Agregar nueva orden </a>'+
+								
+							'</div>');
 								
 							$("html, body, div.panel, div.pane-body").animate({scrollTop: '0px'}, 100);
 
@@ -299,8 +272,7 @@ $(document).ready(function() {
 
 			if(orderDate && clientName && clientContact && paid && discount && paymentType && paymentStatus) {
 				if(validateProduct == true && validateQuantity == true) {
-					// create order button
-					// $("#createOrderBtn").button('loading');
+			 
 
 					$.ajax({
 						url : form.attr('action'),
@@ -319,9 +291,9 @@ $(document).ready(function() {
 								
 								// create order button
 								$(".success-messages").html('<div class="alert alert-success">'+
-	            	'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-	            	'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +	            		            		            	
-	   		       '</div>');
+									'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+									'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +	            		            		            	
+								'</div>');
 								
 							$("html, body, div.panel, div.pane-body").animate({scrollTop: '0px'}, 100);
 
@@ -353,27 +325,7 @@ function printOrder(orderId = null) {
 		var win = window.open(url, '_blank');
         // Cambiar el foco al nuevo tab (punto opcional)
         win.focus();	
-			/*
-		$.ajax({
-			url: 'php_action/printOrderSucursale.php',
-			type: 'post',
-			data: {orderId: orderId},
-			dataType: 'text',
-			success:function(response) { 
-				var mywindow = window.open('', 'Stock Management System', 'height=400,width=600');
-					mywindow.document.write('<html><head><title>Order de Salida Sucursal</title>');        
-					mywindow.document.write('</head><body>');
-					mywindow.document.write(response);
-					mywindow.document.write('</body></html>');
-
-     //   mywindow.document.close(); // necessary for IE >= 10
-        mywindow.focus(); // necessary for IE >= 10
-
-     //   mywindow.print();
-      mywindow.close();
-				
-			}// /success function
-		}); // /ajax function to fetch the printable order*/
+	 
 	} // /if orderId
 } // /print order function
 
@@ -414,7 +366,7 @@ $('#brandCorporation').on('change', function() {
 
 function addRow() {
 	$("#addRowBtn").button("loading");
-	console.log("cargando row")
+	 
 	var brandId = document.getElementById('brandSurcursale').value;
 	var tableLength = $("#productTable1 tbody tr").length;
 
@@ -449,7 +401,8 @@ function addRow() {
 					'<select class="form-control" name="productName1[]" id="productName1'+count+'" onchange="getProductData('+count+')" >'+
 						'<option value="">--Seleccione--</option>';
 						$.each(response, function(index, value) {
-							tr += '<option value="'+value[0]+'">'+value[1]+'</option>';							
+							var select = value[1] + ' - Lote: ' +value[2]+ ' - Fecha Venc: '+value[3];
+								tr += '<option value="'+value[0]+'">'+select+'</option>';							
 						});
 													
 					tr += '</select>'+
@@ -512,8 +465,7 @@ function getProductData(row = null) {
 					console.log("response" , response)
 					// setting the rate value into the rate input field
 					
-					/*$("#rate"+row).val(response.rate);
-					$("#rateValue"+row).val(response.rate);*/
+				
 					$("#stock"+row).val(response.quantity);
 					$("#stockValue"+row).val(response.quantity);
 
@@ -539,10 +491,6 @@ function getProductData(row = null) {
 function getTotal(row = null) {
 	console.log("getTotal" , row)
 	if(row) {
-		/*var total = Number($("#rate"+row).val()) * Number($("#quantity"+row).val());
-		total = total.toFixed(2);
-		$("#total"+row).val(total);
-		$("#totalValue"+row).val(total);*/
 
 		var total = Number($("#stock"+row).val()) - Number($("#quantity"+row).val());
 	//	total = total.toFixed(2);

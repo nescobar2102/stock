@@ -6,11 +6,12 @@ require_once 'core.php';
 $almacen = $_GET['id'];
 
    $sql = "SELECT product.product_id, product.product_name,product.sku, brands.brand_name,
- 		product.fecha_ingreso,product.quantity, product.active, product.brand_id, product.status, product.ubicacion,product.modelo 
-		FROM product_coorporation as product
-			INNER JOIN brands as brands 
-			ON product.brand_id = brands.brand_id
-			WHERE product.status = 1 and brands.brand_id=$almacen";
+   product.fecha_ingreso,product.quantity, product.active, product.brand_id, product.status,
+    product.lote,product.fecha_venc,product.responsable,product.observacion,product.tipo_doc,product.nro_doc
+	FROM product_coorporation as product
+		INNER JOIN brands as brands 
+		ON product.brand_id = brands.brand_id
+		WHERE product.status = 1 and brands.brand_id=$almacen";
 
 $result = $connect->query($sql);
 
@@ -52,7 +53,13 @@ if($result->num_rows > 0) {
  		// active
  		$active,
  		// button
- 		$button 		
+ 		$button ,
+		 $row[9],
+		 $row[10],
+		 $row[11],
+		 $row[12],
+		 $row[13],
+		 $row[14]
  		); 	
  } // /while 
 

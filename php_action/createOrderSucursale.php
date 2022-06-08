@@ -26,8 +26,7 @@ if($_POST) {
  
 	$orderItemStatus = false;
 
-	for($x = 0; $x < count($_POST['productName1']); $x++) {			 
-		//$updateProductQuantitySql = "SELECT product.quantity FROM product as product WHERE product.product_id = ".$_POST['productName1'][$x]."";
+	for($x = 0; $x < count($_POST['productName1']); $x++) {			  
 		$updateProductQuantitySql = "SELECT product.quantity FROM product_coorporation as product WHERE product.product_id = ".$_POST['productName1'][$x]."";
 		$updateProductQuantityData = $connect->query($updateProductQuantitySql);
 		
@@ -35,16 +34,17 @@ if($_POST) {
 		while ($updateProductQuantityResult = $updateProductQuantityData->fetch_row()) {
 			$updateQuantity[$x] = $updateProductQuantityResult[0] - $_POST['quantity'][$x];							
 				// update product table
-			// 	$updateProductTable = "UPDATE product SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
-				 $updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
+				if($updateQuantity[$x] >= 0){
+						
+				$updateProductTable = "UPDATE product_coorporation SET quantity = '".$updateQuantity[$x]."' WHERE product_id = ".$_POST['productName1'][$x]."";
 				$connect->query($updateProductTable);
 
 				// add into order_item
-		 	$orderItemSql = "INSERT INTO  order_item (order_id, product_id, quantity, order_item_status) 
+		     	$orderItemSql = "INSERT INTO  order_item (order_id, product_id, quantity, order_item_status) 
 					VALUES ('$order_id', '".$_POST['productName1'][$x]."', '".$_POST['quantity'][$x]."',  1)";
 
-					$connect->query($orderItemSql);		
- 
+				$connect->query($orderItemSql);		
+			}
 
 				if($x == count($_POST['productName1'])) {
 					$orderItemStatus = true;
@@ -59,7 +59,7 @@ if($_POST) {
 
 	echo json_encode($valid);
 	sleep(2);
-	header('Location: ../ordersSucursale.php?o=add');
+	header('Location: ../orders_sucursale.php?o=add');
  
 } // /if $_POST
 // echo json_encode($valid);

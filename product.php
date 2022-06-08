@@ -40,8 +40,11 @@
 					<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtn" data-target="#addProductModal"> <i class="glyphicon glyphicon-plus-sign"></i> Ingresar Stock </button>
 					<button class="btn btn-default button1" data-toggle="modal" id="addProductModalBtnMasiva" data-target="#addProductModalMasiva"> <i class="glyphicon glyphicon-plus-sign"></i> Carga masiva Stock </button>
 				</div> <!-- /div-action -->				
-				
-				<table class="table" id="manageProductTable">
+				<div class="div-action pull pull-left" style="padding-bottom:40px;">
+					<button id="btn-show-all-children" type="button">Expand All</button>
+					<button id="btn-hide-all-children" type="button">Collapse All</button>
+					</div>
+				<table class="display"   id="manageProductTable">
 					<thead>
 						<tr> 						
 							<th>Nombre del producto</th>
@@ -51,6 +54,12 @@
 							<th>Stock</th>		 
 							<th>Estado</th>
 							<th style="width:15%;">Opciones</th>
+							<th class="none">Lote</th>
+							<th class="none">Fecha de Vencimiento</th>
+							<th class="none">Responsable</th>
+							<th class="none">Observacion</th>
+							<th class="none">Tipo de Documento	</th>
+							<th class="none">Número de Documento	</th>
 						</tr>
 					</thead>
 				</table>
@@ -61,7 +70,26 @@
 	</div> <!-- /col-md-12 -->
 </div> <!-- /row --> 
 
+<script>
+	$(document).ready(function (){
+	 
+    var table = $('#manageProductTable').DataTable({
+        'responsive': true
+    });
 
+    // Handle click on "Expand All" button
+    $('#btn-show-all-children').on('click', function(){
+        // Expand row details
+        table.rows(':not(.parent)').nodes().to$().find('td:first-child').trigger('click');
+    });
+
+    // Handle click on "Collapse All" button
+    $('#btn-hide-all-children').on('click', function(){
+        // Collapse row details
+        table.rows('.parent').nodes().to$().find('td:first-child').trigger('click');
+    });
+});
+</script>
 <script src="custom/js/product.js"></script>
 
 <?php require_once 'includes/footer.php'; ?>
