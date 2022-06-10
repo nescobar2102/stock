@@ -23,72 +23,62 @@ $(document).ready(function() {
 	   
 		// submit product form
 		$("#submitProductForm").unbind('submit').bind('submit', function() {
-		 
-			var productName = $("#productName").val();
-			var quantity = $("#quantity").val();
-			var rate = $("#rate").val();
-			var brandName = $("#brandName").val();
-		//	var categoryName = $("#categoryName").val();
-			var productStatus = $("#productStatus").val();
-	
-			if(productName == "") {
-				$("#productName").after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#productName').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#productName").find('.text-danger').remove();
-				// success out for form 
-				$("#productName").closest('.form-group').addClass('has-success');	  	
-			}	// /else
+	 
+			var quantity = $("#quantity").val(); 
+			var brandName = $("#brandName").val(); 
+			var productStatus = $("#productStatus").val(); 
+			var lote = $("#lote").val(); 
+			var sku = $("#sku").val(); 
 
-			if(quantity == "") {
-				$("#quantity").after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#quantity').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#quantity").find('.text-danger').remove();
-				// success out for form 
-				$("#quantity").closest('.form-group').addClass('has-success');	  	
-			}	// /else
-
-			if(rate == "") {
-				$("#rate").after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#rate').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#rate").find('.text-danger').remove();
-				// success out for form 
-				$("#rate").closest('.form-group').addClass('has-success');	  	
-			}	// /else
-
-			if(brandName == "") {
-				$("#brandName").after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#brandName').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#brandName").find('.text-danger').remove();
-				// success out for form 
-				$("#brandName").closest('.form-group').addClass('has-success');	  	
-			}	// /else
+				if(quantity == "") {
+					$("#quantity").after('<p class="text-danger">Este campo es obligatorio</p>');
+					$('#quantity').closest('.form-group').addClass('has-error');
+				}	else {
+					$("#quantity").find('.text-danger').remove();
+					$("#quantity").closest('.form-group').addClass('has-success');	  	
+				}	 
+				if(brandName == "") {
+					$("#brandName").after('<p class="text-danger">Este campo es obligatorio</p>');
+					$('#brandName').closest('.form-group').addClass('has-error');
+				}	else {
+					$("#brandName").find('.text-danger').remove();				
+					$("#brandName").closest('.form-group').addClass('has-success');	  	
+				}	 
+				if(productStatus == "") {
+					$("#productStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
+					$('#productStatus').closest('.form-group').addClass('has-error');
+				}	else {			 
+					$("#productStatus").find('.text-danger').remove();			 
+					$("#productStatus").closest('.form-group').addClass('has-success');	  	
+				} 
+				if(lote == "") {
+					$("#lote").after('<p class="text-danger">Este campo es obligatorio</p>');
+					$('#lote').closest('.form-group').addClass('has-error');
+				}	else {			 
+					$("#lote").find('.text-danger').remove();			 
+					$("#lote").closest('.form-group').addClass('has-success');	  	
+				}	 
+				if(sku == "") {
+					$("#sku").after('<p class="text-danger">Este campo es obligatorio</p>');
+					$('#sku').closest('.form-group').addClass('has-error');
+				}	else {				 
+					$("#sku").find('.text-danger').remove();				 
+					$("#sku").closest('.form-group').addClass('has-success');	  	
+				}
  
-			if(productStatus == "") {
-				$("#productStatus").after('<p class="text-danger">Este campo es obligatorio</p>');
-				$('#productStatus').closest('.form-group').addClass('has-error');
-			}	else {
-				// remov error text field
-				$("#productStatus").find('.text-danger').remove();
-				// success out for form 
-				$("#productStatus").closest('.form-group').addClass('has-success');	  	
-			}	// /else
-
-			//if(productImage && productName && quantity && rate && brandName && categoryName && productStatus) {
-				if( productName && quantity && rate && brandName  && productStatus ) {
+  
+				if( quantity && brandName && productStatus && lote && sku) {
+					console.log("--------------",quantity)
+					console.log("--------------",brandName)
+					console.log("--------------",productStatus)
+					console.log("--------------",lote)
+					console.log("--------------",sku)
 				// submit loading button
-				$("#createProductBtn").button('loading');
+				//$("#createProductBtn").button('loading');
 
 				var form = $(this);
 				var formData = new FormData(this);
-
+				console.log("-----asdasdasd---------",sku)
 				$.ajax({
 					url : form.attr('action'),
 					type: form.attr('method'),
@@ -98,7 +88,6 @@ $(document).ready(function() {
 					contentType: false,
 					processData: false,
 					success:function(response) {
-
 						if(response.success == true) {
 							// submit loading button
 							$("#createProductBtn").button('reset');
@@ -109,12 +98,12 @@ $(document).ready(function() {
 																	
 							// shows a successful message after operation
 							$('#add-product-messages').html('<div class="alert alert-success">'+
-		            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
-		            '<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
-		          '</div>');
+								'<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+								'<strong><i class="glyphicon glyphicon-ok-sign"></i></strong> '+ response.messages +
+							'</div>');
 
 							// remove the mesages
-		          $(".alert-success").delay(500).show(10, function() {
+		          	$(".alert-success").delay(500).show(10, function() {
 								$(this).delay(3000).hide(10, function() {
 									$(this).remove();
 								});

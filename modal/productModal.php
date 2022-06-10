@@ -12,49 +12,35 @@
 
 	      <div class="modal-body" style="max-height:450px; overflow:auto;">
 
-	      	<div id="add-product-messages"></div>
-
-	      	<!--div class="form-group">
-	        	<label for="productImage" class="col-sm-3 control-label">Imagen: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-					  
-							<div id="kv-avatar-errors-1" class="center-block" style="display:none;"></div>							
-					    <div class="kv-avatar center-block">					        
-					        <input type="file" class="form-control" id="productImage" placeholder="Imagen del producto" name="productImage" class="file-loading" style="width:auto;"/>
-					    </div>
-				      
-				    </div>
-	        </div--> <!-- /form-group-->	     	           	       
-
+	      	<div id="add-product-messages"></div> 
+	       
 			<div class="form-group">
 			    <!--label for="orderDate" class="col-sm-2 control-label">Fecha de orden</label-->
-				<label for="orderDate" class="col-sm-3 control-label">Fecha de ingreso</label>
+				<label for="orderDate" class="col-sm-3 control-label">FECHA DE INGRESO</label>
 			    <div class="col-sm-8">
 			      <input type="date" class="form-control" id="orderDate" name="orderDate" autocomplete="off" />
 			    </div>
-			  </div> 
+			  </div>  
 	        <div class="form-group">
-	        	<label for="productName" class="col-sm-3 control-label">Nombre: </label>
+	        	<label for="quantity" class="col-sm-3 control-label">STOCK: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="productName" placeholder="Nombre del producto" name="productName" autocomplete="off">
-				    </div>
-	        </div> <!-- /form-group-->	    
-
-	        <div class="form-group">
-	        	<label for="quantity" class="col-sm-3 control-label">Stock: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="quantity" placeholder="Stock" name="quantity" autocomplete="off">
+				      <input type="text" class="form-control" id="quantity" placeholder="STOCK" name="quantity" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->	        	 
 
 	        <div class="form-group">
-	        	<label for="rate" class="col-sm-3 control-label">Precio: </label>
+	        	<label for="rate" class="col-sm-3 control-label">TIPO DE DOCUMENTO: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="rate" placeholder="Precio" name="rate" autocomplete="off">
+				      <input type="text" class="form-control" id="tipo_doc" placeholder="TIPO DE DOCUMENTO" name="tipo_doc" autocomplete="off">
+				    </div>
+	        </div> <!-- /form-group-->	     
+			<div class="form-group">
+	        	<label for="rate" class="col-sm-3 control-label"> N° DEL DOCUMENTO : </label>
+	        	<label class="col-sm-1 control-label">: </label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="nro_doc" placeholder="N° DEL DOCUMENTO " name="nro_doc" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->	     	
 			<div class="form-group">
@@ -65,21 +51,34 @@
 				    </div>
 	        </div> <!-- /form-group-->	 
 			<div class="form-group">
-	        	<label for="modelo" class="col-sm-3 control-label">Modelo: </label>
+	        	<label for="responsable" class="col-sm-3 control-label">RESPONSABLE: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="modelo" placeholder="Modelo" name="modelo" autocomplete="off">
+				      <input type="text" class="form-control" id="responsable" placeholder="MoRESPONSABLEdelo" name="responsable" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->     
 			  
 			<div class="form-group">
-	        	<label for="ubicacion" class="col-sm-3 control-label">Ubicacion: </label>
+	        	<label for="ubicacion" class="col-sm-3 control-label">LOTE: </label>
 	        	<label class="col-sm-1 control-label">: </label>
 				    <div class="col-sm-8">
-				      <input type="text" class="form-control" id="ubicacion" placeholder="Modelo" name="ubicacion" autocomplete="off">
+				      <input type="text" class="form-control" id="lote" placeholder="LOTE" name="lote" autocomplete="off">
 				    </div>
 	        </div> <!-- /form-group-->      
-
+			<div class="form-group">
+			  
+				<label for="orderDateven" class="col-sm-3 control-label">FECHA DE VENCIMIENTO </label>
+			    <div class="col-sm-8">
+			      <input type="date" class="form-control" id="orderDateven" name="orderDateven" autocomplete="off" />
+			    </div>
+			  </div> 
+			  <div class="form-group">
+	        	<label for="ubicacion" class="col-sm-3 control-label">OBSERVACION: </label>
+	        	<label class="col-sm-1 control-label">: </label>
+				    <div class="col-sm-8">
+				      <input type="text" class="form-control" id="observacion" placeholder="OBSERVACION" name="observacion" autocomplete="off">
+				    </div>
+	        </div> <!-- /form-group-->    
 	        <div class="form-group">
 	        	<label for="brandName" class="col-sm-3 control-label">Corporacion: </label>
 	        	<label class="col-sm-1 control-label">: </label>
@@ -87,7 +86,7 @@
 				      <select class="form-control" id="brandName" name="brandName">
 				      	<option value="">-- Selecciona --</option>
 				      	<?php 
-				      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands_1 WHERE brand_status = 1 AND brand_active = 1";
+				      	$sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1 AND brand_active = 1";
 								$result = $connect->query($sql);
 
 								while($row = $result->fetch_array()) {
@@ -97,26 +96,7 @@
 				      	?>
 				      </select>
 				    </div>
-	        </div> <!-- /form-group-->	
-
-	        <!--div class="form-group">
-	        	<label for="categoryName" class="col-sm-3 control-label">Categoría: </label>
-	        	<label class="col-sm-1 control-label">: </label>
-				    <div class="col-sm-8">
-				      <select type="text" class="form-control" id="categoryName" placeholder="Product Name" name="categoryName" >
-				      	<option value="">-- Selecciona --</option>
-				      	<?php 
-				      	$sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1 AND categories_active = 1";
-								$result = $connect->query($sql);
-
-								while($row = $result->fetch_array()) {
-									echo "<option value='".$row[0]."'>".$row[1]."</option>";
-								} // while
-								
-				      	?>
-				      </select>
-				    </div>
-	        </div--> <!-- /form-group-->					        	         	       
+	        </div> 				        	         	       
 
 	        <div class="form-group">
 	        	<label for="productStatus" class="col-sm-3 control-label">Estado: </label>
